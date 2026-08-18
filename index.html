@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#0b0b0d" />
-    <title>Give Dance Presentation — V1.0</title>
+    <title>See the Beat — Deaf K-pop Dancer Product Design</title>
     <style>
       :root {
         --ink: #0b0b0d;
@@ -60,7 +60,7 @@
         padding:
           max(1.25rem, env(safe-area-inset-top))
           max(1.25rem, 4.5vw)
-          max(1.25rem, env(safe-area-inset-bottom));
+          max(4.75rem, calc(env(safe-area-inset-bottom) + 4.75rem));
         visibility: hidden;
         opacity: 0;
         transform: translateX(4%);
@@ -458,15 +458,21 @@
       }
 
       .question-body {
-        align-content: center;
+        place-items: center;
+        text-align: center;
+      }
+
+      .question-body > div {
+        width: 100%;
       }
 
       .question-copy {
-        max-width: 12ch;
+        width: 100%;
+        max-width: none;
         font-family: "Songti SC", "STSong", serif;
-        font-size: clamp(2.8rem, 6.2vw, 6.7rem);
+        font-size: clamp(2.7rem, 4.8vw, 5.2rem);
         font-weight: 500;
-        line-height: 1.2;
+        line-height: 1.25;
         letter-spacing: -0.04em;
       }
 
@@ -476,6 +482,14 @@
         background: var(--ink);
         box-decoration-break: clone;
         -webkit-box-decoration-break: clone;
+      }
+
+      html[lang="en"] .question-copy {
+        font-family: var(--display);
+        font-size: clamp(2.4rem, 4vw, 4.4rem);
+        font-weight: 800;
+        line-height: 1.08;
+        letter-spacing: -0.035em;
       }
 
       .question-note {
@@ -702,6 +716,21 @@
         gap: 5vw;
       }
 
+      .insight-left {
+        align-self: center;
+        display: grid;
+        gap: clamp(1.4rem, 3vh, 2.5rem);
+      }
+
+      .insight-position {
+        max-width: 10ch;
+        font-family: var(--display);
+        font-size: clamp(2.8rem, 5.4vw, 5.8rem);
+        font-weight: 800;
+        line-height: 0.92;
+        letter-spacing: -0.055em;
+      }
+
       .sense-stack {
         align-self: stretch;
         display: grid;
@@ -739,12 +768,11 @@
       }
 
       .insight-quote {
-        align-self: center;
-        max-width: 12ch;
+        max-width: 21ch;
         font-family: "Songti SC", "STSong", serif;
-        font-size: clamp(2rem, 4.3vw, 4.6rem);
+        font-size: clamp(1.35rem, 2.35vw, 2.5rem);
         font-weight: 500;
-        line-height: 1.35;
+        line-height: 1.45;
       }
 
       /* 04 — Journey */
@@ -868,41 +896,54 @@
 
       /* 05 — Pain */
       .pain-layout {
-        grid-template-columns: 0.72fr 1.28fr;
-        gap: 6vw;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        gap: clamp(1.5rem, 4vh, 3.5rem);
       }
 
       .pain-question {
-        align-self: end;
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
+        align-items: end;
+        gap: 5vw;
       }
 
       .pain-question .title-md {
-        margin-bottom: 1.5rem;
+        margin: 0;
       }
 
       .pain-list {
         align-self: stretch;
         display: grid;
-        grid-template-rows: repeat(3, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         border-top: 1px solid currentColor;
+        border-bottom: 1px solid currentColor;
       }
 
       .pain-item {
         display: grid;
-        grid-template-columns: clamp(3.6rem, 6vw, 6rem) 1fr auto;
-        align-items: center;
-        gap: 1.5rem;
-        border-bottom: 1px solid currentColor;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto;
+        align-items: start;
+        gap: 1.2rem;
+        padding: clamp(1rem, 2.2vw, 2rem);
+        border-right: 1px solid currentColor;
+      }
+
+      .pain-item:last-child {
+        border-right: 0;
       }
 
       .pain-item .zh {
         font-family: var(--display);
-        font-size: clamp(2rem, 4vw, 4rem);
+        font-size: clamp(3rem, 5vw, 5.2rem);
         font-weight: 800;
+        line-height: 0.9;
+        color: var(--coral);
       }
 
       .pain-item p {
-        max-width: 31ch;
+        max-width: 25ch;
         font-size: clamp(0.9rem, 1.3vw, 1.22rem);
         line-height: 1.5;
       }
@@ -960,12 +1001,6 @@
         text-align: center;
       }
 
-      .system-node:nth-child(2) {
-        background: var(--coral);
-        color: var(--ink);
-        transform: scale(1.15);
-      }
-
       .system-node h3 {
         font-family: var(--display);
         font-size: clamp(2rem, 3.2vw, 3.6rem);
@@ -1001,8 +1036,8 @@
 
       .team-row {
         display: grid;
-        grid-template-columns: 2.4rem minmax(0, 1fr);
-        gap: 0.9rem;
+        grid-template-columns: 1.6rem minmax(0, 1fr);
+        gap: 0.7rem;
         align-content: center;
         min-height: 0;
         padding: clamp(0.7rem, 1.35vw, 1.25rem);
@@ -1021,7 +1056,7 @@
 
       .team-row .team-index {
         font-family: var(--display);
-        font-size: clamp(1.7rem, 2.5vw, 2.8rem);
+        font-size: clamp(0.9rem, 1.25vw, 1.35rem);
         font-weight: 800;
         line-height: 1;
         color: var(--coral);
@@ -1033,12 +1068,12 @@
       }
 
       .team-role strong {
-        font-size: clamp(0.82rem, 1.05vw, 1.02rem);
-        line-height: 1.3;
+        font-size: clamp(1.05rem, 1.45vw, 1.4rem);
+        line-height: 1.2;
       }
 
       .team-role span {
-        font-size: clamp(0.68rem, 0.85vw, 0.82rem);
+        font-size: clamp(0.72rem, 0.9vw, 0.88rem);
         font-weight: 700;
         line-height: 1.35;
         opacity: 0.62;
@@ -1095,6 +1130,463 @@
         width: 0.8rem;
         aspect-ratio: 1;
         background: currentColor;
+      }
+
+      /* Empty product detail slides */
+      .detail-placeholder-body {
+        grid-template-columns: minmax(13rem, 0.56fr) minmax(0, 1.44fr);
+        gap: 6vw;
+      }
+
+      .detail-placeholder-heading {
+        align-self: center;
+      }
+
+      .detail-placeholder-heading .meta {
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .detail-placeholder-heading h2 {
+        font-family: var(--display);
+        font-size: clamp(3.2rem, 6vw, 6.4rem);
+        font-weight: 800;
+        line-height: 0.94;
+        letter-spacing: -0.05em;
+      }
+
+      .detail-empty-frame {
+        position: relative;
+        align-self: stretch;
+        min-height: 0;
+        border: 1px solid currentColor;
+        overflow: hidden;
+        background:
+          linear-gradient(color-mix(in srgb, currentColor 7%, transparent) 1px, transparent 1px),
+          linear-gradient(90deg, color-mix(in srgb, currentColor 7%, transparent) 1px, transparent 1px);
+        background-size: 12.5% 12.5%;
+      }
+
+      .detail-empty-frame::before,
+      .detail-empty-frame::after {
+        content: "";
+        position: absolute;
+        pointer-events: none;
+      }
+
+      .detail-empty-frame::before {
+        inset: 12%;
+        border: 1px solid color-mix(in srgb, currentColor 26%, transparent);
+      }
+
+      .detail-empty-frame::after {
+        top: 50%;
+        left: 50%;
+        width: clamp(5rem, 10vw, 10rem);
+        aspect-ratio: 1;
+        border: 1px solid var(--detail-accent, var(--coral));
+        border-radius: 50%;
+        translate: -50% -50%;
+      }
+
+      .haptic-app-video-frame {
+        position: relative;
+        align-self: center;
+        justify-self: end;
+        width: min(100%, 54rem);
+        aspect-ratio: 880 / 710;
+        border: 1px solid currentColor;
+        background: var(--ink);
+        box-shadow: 1rem 1rem 0 color-mix(in srgb, currentColor 12%, transparent);
+        overflow: hidden;
+      }
+
+      .haptic-app-video-frame video {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .haptic-app-video-label {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        z-index: 1;
+        padding: 0.4rem 0.55rem;
+        background: var(--coral);
+        color: var(--ink);
+        font-size: 0.56rem;
+        font-weight: 800;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+        pointer-events: none;
+      }
+
+      .hardware-video-grid {
+        align-self: center;
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        align-items: center;
+        justify-content: center;
+        gap: clamp(0.8rem, 1.5vh, 1.2rem);
+        min-width: 0;
+      }
+
+      .hardware-video-frame {
+        position: relative;
+        width: auto;
+        height: min(64vh, 40rem);
+        aspect-ratio: 9 / 16;
+        border: 1px solid currentColor;
+        background: var(--ink);
+        box-shadow: 0.65rem 0.65rem 0 color-mix(in srgb, var(--coral) 30%, transparent);
+        overflow: hidden;
+      }
+
+      .hardware-video-frame video {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hardware-video-label {
+        position: absolute;
+        top: 0.65rem;
+        right: 0.65rem;
+        z-index: 1;
+        padding: 0.34rem 0.5rem;
+        background: var(--ink);
+        color: var(--paper);
+        font-size: 0.54rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        pointer-events: none;
+      }
+
+      /* Formation design detail */
+      .formation-detail-body {
+        grid-template-columns: minmax(24rem, 0.92fr) minmax(0, 1.08fr);
+        gap: 4vw;
+      }
+
+      .formation-detail-copy {
+        align-self: center;
+      }
+
+      .formation-detail-copy .formation-kicker {
+        display: block;
+        margin-bottom: 0.8rem;
+        color: color-mix(in srgb, currentColor 68%, transparent);
+        font-size: clamp(0.7rem, 0.9vw, 0.88rem);
+        font-weight: 800;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+
+      .formation-detail-copy h2 {
+        max-width: none;
+        font-family: var(--display);
+        font-size: clamp(2.8rem, 4.25vw, 4.7rem);
+        font-weight: 800;
+        line-height: 0.94;
+        letter-spacing: -0.05em;
+      }
+
+      .formation-detail-copy h2 span {
+        color: var(--coral);
+      }
+
+      .formation-detail-copy .lead {
+        margin-top: 1.5rem;
+        max-width: 38ch;
+      }
+
+      .formation-steps {
+        display: grid;
+        margin-top: clamp(1.3rem, 3vh, 2.5rem);
+        border-top: 1px solid currentColor;
+      }
+
+      .formation-step {
+        display: grid;
+        grid-template-columns: 2.8rem minmax(7rem, 0.75fr) minmax(0, 1fr);
+        align-items: center;
+        gap: 1rem;
+        padding: clamp(0.65rem, 1.3vh, 1rem) 0;
+        border-bottom: 1px solid currentColor;
+      }
+
+      .formation-step .step-number {
+        font-family: var(--display);
+        font-size: clamp(1.5rem, 2vw, 2.2rem);
+        font-weight: 800;
+        color: var(--coral);
+      }
+
+      .formation-step strong {
+        font-size: clamp(0.85rem, 1.05vw, 1rem);
+      }
+
+      .formation-step span:last-child {
+        font-size: clamp(0.72rem, 0.88vw, 0.84rem);
+        opacity: 0.68;
+      }
+
+      .formation-video-frame {
+        position: relative;
+        align-self: center;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border: 1px solid color-mix(in srgb, currentColor 70%, transparent);
+        background: var(--ink);
+        box-shadow: 1rem 1rem 0 color-mix(in srgb, var(--ink) 18%, transparent);
+        overflow: hidden;
+      }
+
+      .formation-video-frame video {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .formation-video-label {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        z-index: 1;
+        padding: 0.4rem 0.55rem;
+        background: var(--ink);
+        color: var(--paper);
+        font-size: 0.56rem;
+        font-weight: 800;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+        pointer-events: none;
+      }
+
+      /* Performance visual editor detail */
+      .visual-editor-body {
+        grid-template-rows: auto 1fr;
+        gap: clamp(1rem, 2vh, 1.7rem);
+      }
+
+      .visual-editor-heading {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: start;
+        gap: 0.45rem;
+      }
+
+      .visual-editor-heading h2 {
+        font-family: var(--display);
+        font-size: clamp(1.8rem, 2.6vw, 2.8rem);
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: -0.035em;
+      }
+
+      .visual-editor-heading .lead {
+        max-width: 42ch;
+        font-size: clamp(0.9rem, 1.25vw, 1.15rem);
+      }
+
+      .visual-editor-content {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-rows: auto auto;
+        column-gap: clamp(0.6rem, 1.2vw, 1.1rem);
+        row-gap: clamp(0.8rem, 1.8vh, 1.4rem);
+        min-height: 0;
+      }
+
+      .visual-stage-grid {
+        display: grid;
+        grid-column: 1 / -1;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: clamp(0.6rem, 1.2vw, 1.1rem);
+        min-height: 0;
+        align-items: start;
+      }
+
+      .visual-editor-stage {
+        display: grid;
+        grid-template-rows: auto auto auto;
+        gap: 0.55rem;
+        min-width: 0;
+      }
+
+      .visual-stage-title {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+      }
+
+      .visual-stage-title .stage-number {
+        display: none;
+      }
+
+      .visual-stage-title strong {
+        display: inline-block;
+        padding: 0.45rem 0.58rem;
+        background: var(--paper);
+        color: var(--ink);
+        font-size: clamp(0.7rem, 0.86vw, 0.82rem);
+      }
+
+      .visual-editor-stage:not(:last-child) .visual-stage-title::after {
+        content: "";
+        flex: 1;
+        height: 0.16rem;
+        margin-left: 0.25rem;
+        background: color-mix(in srgb, var(--paper) 38%, transparent);
+      }
+
+      .visual-stage-pain {
+        min-height: 2.7em;
+        font-size: clamp(0.62rem, 0.78vw, 0.76rem);
+        line-height: 1.4;
+      }
+
+      .visual-shot {
+        display: block;
+        width: 100%;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        overflow: visible;
+        cursor: zoom-in;
+      }
+
+      .visual-shot img {
+        display: block;
+        width: 100%;
+        height: auto;
+        transition: transform 300ms var(--ease);
+      }
+
+      .visual-shot:hover img,
+      .visual-shot:focus-visible img {
+        transform: scale(1.025);
+      }
+
+      .visual-shot:focus-visible {
+        outline: 2px solid var(--paper);
+        outline-offset: 3px;
+      }
+
+      .visual-editor-stage .visual-shot {
+        height: clamp(10rem, 25vh, 16.5rem);
+      }
+
+      .visual-editor-stage .visual-shot img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .visual-editor-stage:last-child .visual-shot img {
+        object-position: left center;
+      }
+
+      .visual-aigc-row {
+        display: grid;
+        grid-column: 2 / 4;
+        grid-template-columns: minmax(9rem, 0.7fr) minmax(0, 1.3fr);
+        align-items: center;
+        gap: 1.2rem;
+        width: 100%;
+        min-height: 0;
+        padding: 0 clamp(1.5rem, 2vw, 2.2rem);
+        border-left: 2px solid color-mix(in srgb, currentColor 34%, transparent);
+        border-right: 2px solid color-mix(in srgb, currentColor 34%, transparent);
+        background:
+          linear-gradient(currentColor, currentColor) left center / 1.15rem 2px no-repeat,
+          linear-gradient(currentColor, currentColor) right center / 1.15rem 2px no-repeat;
+      }
+
+      .visual-aigc-copy {
+        font-size: clamp(0.62rem, 0.78vw, 0.76rem);
+        font-weight: 400;
+        line-height: 1.4;
+      }
+
+      .visual-aigc-copy strong {
+        display: inline;
+        margin: 0;
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: 400;
+      }
+
+      .visual-aigc-row .visual-shot {
+        height: auto;
+      }
+
+      .visual-aigc-row .visual-shot img {
+        width: auto;
+        max-width: 100%;
+        max-height: 25vh;
+        margin: 0 auto;
+      }
+
+      .image-lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 80;
+        display: grid;
+        grid-template-rows: 1fr auto;
+        place-items: center;
+        gap: 0.8rem;
+        padding: max(1.5rem, 4vw);
+        background: rgba(11, 11, 13, 0.96);
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+        transition:
+          opacity 220ms var(--ease),
+          visibility 0s linear 220ms;
+      }
+
+      .image-lightbox.open {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+        transition-delay: 0s;
+      }
+
+      .image-lightbox img {
+        max-width: 92vw;
+        max-height: 82vh;
+        object-fit: contain;
+        box-shadow: 0 1.5rem 5rem rgba(0, 0, 0, 0.35);
+      }
+
+      .image-lightbox figcaption {
+        color: var(--paper);
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .lightbox-close {
+        position: absolute;
+        top: max(1rem, env(safe-area-inset-top));
+        right: max(1rem, env(safe-area-inset-right));
+        display: grid;
+        place-items: center;
+        width: 2.8rem;
+        aspect-ratio: 1;
+        border: 1px solid rgba(242, 239, 232, 0.55);
+        border-radius: 50%;
+        background: transparent;
+        color: var(--paper);
+        font-size: 1.2rem;
+        cursor: pointer;
       }
 
       /* Feature slides */
@@ -1489,7 +1981,19 @@
         translate: -50% -50%;
         border-radius: 50%;
         background: var(--coral);
-        animation: pulse 1s ease-in-out infinite;
+        animation: watch-pulse 1s ease-in-out infinite;
+      }
+
+      @keyframes watch-pulse {
+        0%,
+        100% {
+          transform: scale(0.92);
+          opacity: 0.58;
+        }
+        50% {
+          transform: scale(1.55);
+          opacity: 1;
+        }
       }
 
       .visual-panel {
@@ -1705,8 +2209,8 @@
 
       .help {
         position: fixed;
-        left: max(1rem, 2vw);
-        bottom: max(1rem, env(safe-area-inset-bottom));
+        left: max(7rem, calc(2vw + 5.6rem));
+        bottom: max(1.65rem, calc(env(safe-area-inset-bottom) + 1.65rem));
         z-index: 20;
         display: flex;
         gap: 1rem;
@@ -1721,7 +2225,7 @@
       .language-toggle {
         position: fixed;
         left: max(1rem, 2vw);
-        bottom: max(3.1rem, calc(env(safe-area-inset-bottom) + 3.1rem));
+        bottom: max(1rem, env(safe-area-inset-bottom));
         z-index: 24;
         display: flex;
         align-items: center;
@@ -1762,7 +2266,7 @@
       @media (max-width: 760px) {
         .slide {
           overflow-y: auto;
-          padding-bottom: 4.5rem;
+          padding-bottom: 5rem;
         }
 
         .slide-body {
@@ -1817,7 +2321,9 @@
 
         .journey-heading,
         .vision-title,
-        .team-body {
+        .team-body,
+        .detail-placeholder-body,
+        .formation-detail-body {
           grid-template-columns: 1fr;
         }
 
@@ -1865,9 +2371,57 @@
           min-height: 8rem;
         }
 
+        .detail-empty-frame {
+          min-height: 52vh;
+        }
+
+        .formation-video-frame {
+          min-height: 32vh;
+        }
+
+        .visual-editor-heading,
+        .visual-stage-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .visual-editor-content {
+          grid-template-columns: 1fr;
+          grid-template-rows: auto auto;
+        }
+
+        .visual-editor-stage {
+          min-height: 46vh;
+        }
+
+        .visual-aigc-row {
+          grid-column: 1;
+          width: 100%;
+          grid-template-columns: 1fr;
+          min-height: 54vh;
+        }
+
+        .visual-aigc-row .visual-shot img {
+          width: 100%;
+          max-height: none;
+        }
+
+        .hardware-video-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hardware-video-frame {
+          width: min(100%, 22rem);
+          height: auto;
+          justify-self: center;
+        }
+
         .pain-item {
-          grid-template-columns: 3rem 1fr;
-          padding: 1rem 0;
+          min-height: 34vh;
+          padding: 1rem;
+        }
+
+        .pain-question {
+          grid-template-columns: 1fr;
         }
 
         .pain-item .emotion {
@@ -2003,7 +2557,7 @@
         <div class="slide-body question-body">
           <div>
             <h2 class="question-copy reveal" style="--i: 0">
-              如果没有声音，仅靠<em>记忆中的动作</em>，你会如何完成整支舞蹈？
+              如果没有声音，仅靠<em>记忆中的动作</em>，<br />你会如何完成整支舞蹈？
             </h2>
             <p class="question-note reveal" style="--i: 2">Imagine the full performance — without hearing the music.</p>
           </div>
@@ -2048,57 +2602,28 @@
         </footer>
       </section>
 
-      <section class="slide light" data-title="Our Dancers" aria-label="第 2 页，共 10 页">
-        <header class="slide-header">
-          <div class="eyebrow">01 · Our dancers</div>
-          <div class="meta">Start with capability, not deficit</div>
-        </header>
-        <div class="slide-body audience-layout">
-          <div class="portrait-field reveal" style="--i: 0" aria-label="抽象舞者剪影">
-            <div class="dancer-figure" aria-hidden="true">
-              <span class="head"></span>
-              <span class="torso"></span>
-              <span class="limb arm-a"></span>
-              <span class="limb arm-b"></span>
-              <span class="limb leg-a"></span>
-              <span class="limb leg-b"></span>
-            </div>
-          </div>
-          <div class="audience-copy">
-            <h2 class="display title-lg reveal" style="--i: 1">NOT LESS.<br />JUST <span class="highlight">DIFFERENT.</span></h2>
-            <p class="lead reveal" style="--i: 2">
-              Deaf dancers 不是在“缺少音乐”的情况下跳舞。他们依靠视觉、震动、身体记忆与团队协作，建立自己的节奏系统。
-            </p>
-            <div class="principles reveal" style="--i: 3">
-              <span>Deaf-led</span><span>Multi-sensory</span><span>Expression first</span>
-            </div>
-          </div>
-        </div>
-        <footer class="slide-footer">
-          <span class="slide-number">02 / 10</span>
-          <span class="meta">Reframe the user</span>
-        </footer>
-      </section>
-
       <section class="slide" data-title="Research Insight" aria-label="第 3 页，共 10 页">
         <header class="slide-header">
           <div class="eyebrow">02 · Research insight</div>
           <div class="meta">Three channels of rhythm</div>
         </header>
         <div class="slide-body insight-layout">
-          <blockquote class="insight-quote reveal" style="--i: 0">
-            他们不是感受不到舞蹈，而是在使用<span class="highlight">不同的线索。</span>
-          </blockquote>
+          <div class="insight-left">
+            <h2 class="insight-position reveal" style="--i: 0">NOT LESS.<br />JUST <span class="highlight">DIFFERENT.</span></h2>
+            <blockquote class="insight-quote reveal" style="--i: 1">
+              他们不是感受不到舞蹈，而是在使用<span class="highlight">不同的线索。</span>
+            </blockquote>
+          </div>
           <div class="sense-stack">
-            <div class="sense-row reveal" style="--i: 1">
+            <div class="sense-row reveal" style="--i: 2">
               <span class="sense-number">01</span>
               <div><h3>视觉 Visual</h3><p>动作、口令、字幕、灯光与队友位置</p></div>
             </div>
-            <div class="sense-row reveal" style="--i: 2">
+            <div class="sense-row reveal" style="--i: 3">
               <span class="sense-number">02</span>
               <div><h3>触觉 Haptic</h3><p>地板反馈、低频震动与身体内部节奏</p></div>
             </div>
-            <div class="sense-row reveal" style="--i: 3">
+            <div class="sense-row reveal" style="--i: 4">
               <span class="sense-number">03</span>
               <div><h3>协作 Together</h3><p>手势、眼神、空间关系与集体记忆</p></div>
             </div>
@@ -2153,37 +2678,37 @@
         </footer>
       </section>
 
-      <section class="slide coral" data-title="Pain Points" aria-label="第 5 页，共 10 页">
+      <section class="slide light" data-title="Pain Points" aria-label="第 5 页，共 10 页">
         <header class="slide-header">
-          <div class="eyebrow">04 · Pain points</div>
-          <div class="meta">Information keeps getting lost</div>
+          <div class="eyebrow">04 · 痛点</div>
+          <div class="meta">信息在持续流失</div>
         </header>
         <div class="slide-body pain-layout">
           <div class="pain-question">
-            <h2 class="display title-md reveal" style="--i: 0">THE GAP IS NOT<br />THE <span class="stroke-word">DANCER.</span></h2>
+            <h2 class="display title-md reveal" style="--i: 0">问题不在<br /><span class="highlight">舞者。</span></h2>
             <p class="lead reveal" style="--i: 1">真正的问题，是音乐信息没有被转换为舞者能够稳定感知和使用的形式。</p>
           </div>
           <div class="pain-list">
             <article class="pain-item reveal" style="--i: 2">
               <span class="zh">学</span>
               <p>节奏与动作难以同时理解，频繁暂停、回放和猜测。</p>
-              <span class="emotion">Uncertain</span>
+              <span class="emotion">不确定</span>
             </article>
             <article class="pain-item reveal" style="--i: 3">
               <span class="zh">练</span>
               <p>个人动作、队形位置与团队节奏缺少共同参照。</p>
-              <span class="emotion">Disconnected</span>
+              <span class="emotion">难同步</span>
             </article>
             <article class="pain-item reveal" style="--i: 4">
               <span class="zh">演</span>
               <p>现场提示不稳定，辅助技术也未能成为舞台表达的一部分。</p>
-              <span class="emotion">Exposed</span>
+              <span class="emotion">缺乏保障</span>
             </article>
           </div>
         </div>
         <footer class="slide-footer">
           <span class="slide-number">05 / 10</span>
-          <span class="meta">Design opportunity</span>
+          <span class="meta">设计机会</span>
         </footer>
       </section>
 
@@ -2216,7 +2741,7 @@
         </header>
         <div class="slide-body team-body">
           <div class="team-intro">
-            <h2 class="display title-md reveal" style="--i: 0">七条工作流，<br />合成一个产品。</h2>
+            <h2 class="display title-md reveal" style="--i: 0">团队分工</h2>
             <p class="lead reveal" style="--i: 1">团队并行探索学、练、演中的不同机会，最后将所有能力整合为一套连贯体验。</p>
           </div>
           <div class="team-roster">
@@ -2294,6 +2819,24 @@
         </footer>
       </section>
 
+      <section class="slide light" data-title="Dance Learning Player Detail" aria-label="扒舞播放器详情页" style="--detail-accent: var(--coral)">
+        <header class="slide-header">
+          <div class="eyebrow">Learn · Product detail</div>
+          <div class="meta">Content placeholder</div>
+        </header>
+        <div class="slide-body detail-placeholder-body">
+          <div class="detail-placeholder-heading reveal" style="--i: 0">
+            <span class="meta">01 / Learn</span>
+            <h2>扒舞<br />播放器</h2>
+          </div>
+          <div class="detail-empty-frame reveal" style="--i: 1" aria-hidden="true"></div>
+        </div>
+        <footer class="slide-footer">
+          <span class="slide-number">14 / 24</span>
+          <span class="meta">Dance learning player</span>
+        </footer>
+      </section>
+
       <section class="slide blue" data-title="Practice" aria-label="第 8 页，共 10 页">
         <header class="slide-header">
           <div class="eyebrow">07 · Practice</div>
@@ -2344,6 +2887,51 @@
         </footer>
       </section>
 
+      <section class="slide blue" data-title="Formation Design Detail" aria-label="队形设计详情页" style="--detail-accent: var(--lime)">
+        <header class="slide-header">
+          <div class="eyebrow">07.1 · Practice / Formation</div>
+          <div class="meta">One standard · Three moments</div>
+        </header>
+        <div class="slide-body formation-detail-body">
+          <div class="formation-detail-copy">
+            <span class="formation-kicker reveal" style="--i: 0">Formation calibration loop</span>
+            <h2 class="reveal" style="--i: 1">把“站哪、何时走、<br />怎么改”变成<span>可见标准。</span></h2>
+            <p class="lead reveal" style="--i: 2">老师设置队形与关键时间，舞者获得个人路线；排练后再用固定机位视频，对照站位、间距与到位时机。</p>
+            <div class="formation-steps reveal" style="--i: 3">
+              <div class="formation-step"><span class="step-number">01</span><strong>设定队形</strong><span>人数 · 模板 · 关键时间</span></div>
+              <div class="formation-step"><span class="step-number">02</span><strong>分发路线</strong><span>个人站位 · 路线 · 时机</span></div>
+              <div class="formation-step"><span class="step-number">03</span><strong>复盘偏差</strong><span>偏移图 · 教练式反馈</span></div>
+            </div>
+          </div>
+          <div class="formation-video-frame reveal" style="--i: 2">
+            <span class="formation-video-label">Demo</span>
+            <video src="media/formation-design-demo.mp4" poster="media/formation-design-poster.jpg" playsinline controls preload="metadata"></video>
+          </div>
+        </div>
+        <footer class="slide-footer">
+          <span class="slide-number">16 / 24</span>
+          <span class="meta">Formation design · Personal route · Async calibration</span>
+        </footer>
+      </section>
+
+      <section class="slide blue" data-title="Motion Calibration Detail" aria-label="动作校准详情页" style="--detail-accent: var(--coral)">
+        <header class="slide-header">
+          <div class="eyebrow">Practice · Product detail</div>
+          <div class="meta">Content placeholder</div>
+        </header>
+        <div class="slide-body detail-placeholder-body">
+          <div class="detail-placeholder-heading reveal" style="--i: 0">
+            <span class="meta">02B / Practice</span>
+            <h2>动作<br />校准</h2>
+          </div>
+          <div class="detail-empty-frame reveal" style="--i: 1" aria-hidden="true"></div>
+        </div>
+        <footer class="slide-footer">
+          <span class="slide-number">17 / 24</span>
+          <span class="meta">Motion calibration</span>
+        </footer>
+      </section>
+
       <section class="slide coral" data-title="Performance Visual" aria-label="表演视觉制作">
         <header class="slide-header">
           <div class="eyebrow">08 · Perform / Visual</div>
@@ -2383,6 +2971,61 @@
         </footer>
       </section>
 
+      <section class="slide coral" data-title="Performance Visual Detail" aria-label="演出视觉详情页" style="--detail-accent: var(--ink)">
+        <header class="slide-header">
+          <div class="eyebrow">08.1 · Perform / Visual editor</div>
+          <div class="meta">From music analysis to stage-ready video</div>
+        </header>
+        <div class="slide-body visual-editor-body">
+          <div class="visual-editor-heading">
+            <h2 class="reveal" style="--i: 0">演出视觉编辑器</h2>
+            <p class="lead reveal" style="--i: 1">听不到音乐，怎么制作匹配音乐节奏的演出视频？</p>
+          </div>
+          <div class="visual-editor-content">
+            <div class="visual-stage-grid">
+              <article class="visual-editor-stage reveal" style="--i: 1">
+                <div class="visual-stage-title"><span class="stage-number">01</span><strong>上传并解析音乐</strong></div>
+                <p class="visual-stage-pain"></p>
+                <button class="visual-shot" type="button" data-lightbox-src="media/visual-audio-analysis.jpg" data-caption-zh="上传并解析音乐" data-caption-en="Upload and analyze music">
+                  <img src="media/visual-audio-analysis.jpg" alt="上传并解析音乐界面" />
+                </button>
+              </article>
+              <article class="visual-editor-stage reveal" style="--i: 2">
+                <div class="visual-stage-title"><span class="stage-number">02</span><strong>剪辑视频</strong></div>
+                <p class="visual-stage-pain">对应痛点：听不见音乐，无法匹配视频速度、对齐音乐</p>
+                <button class="visual-shot" type="button" data-lightbox-src="media/visual-video-editing.jpg" data-caption-zh="剪辑视频" data-caption-en="Edit video">
+                  <img src="media/visual-video-editing.jpg" alt="视频速度匹配与剪辑界面" />
+                </button>
+              </article>
+              <article class="visual-editor-stage reveal" style="--i: 3">
+                <div class="visual-stage-title"><span class="stage-number">03</span><strong>叠加视觉节奏信号</strong></div>
+                <p class="visual-stage-pain">对应痛点：现场演出时仅能通过同伴获取信号，自己找不到节奏</p>
+                <button class="visual-shot" type="button" data-lightbox-src="media/visual-rhythm-overlay.jpg" data-caption-zh="叠加视觉节奏信号" data-caption-en="Add visual rhythm cues">
+                  <img src="media/visual-rhythm-overlay.jpg" alt="视觉节奏信号叠加界面" />
+                </button>
+              </article>
+              <article class="visual-editor-stage reveal" style="--i: 4">
+                <div class="visual-stage-title"><span class="stage-number">04</span><strong>导出视频</strong></div>
+                <p class="visual-stage-pain"></p>
+                <button class="visual-shot" type="button" data-lightbox-src="media/visual-export.jpg" data-caption-zh="导出视频" data-caption-en="Export video">
+                  <img src="media/visual-export.jpg" alt="视频导出界面" />
+                </button>
+              </article>
+            </div>
+            <div class="visual-aigc-row reveal" style="--i: 4">
+              <p class="visual-aigc-copy">利用 AIGC 直接生成<br />含有视觉信号的模板</p>
+              <button class="visual-shot" type="button" data-lightbox-src="media/visual-aigc-template.jpg" data-caption-zh="AIGC 视觉信号模板" data-caption-en="AIGC visual cue template">
+                <img src="media/visual-aigc-template.jpg" alt="AIGC 视觉信号模板生成界面" />
+              </button>
+            </div>
+          </div>
+        </div>
+        <footer class="slide-footer">
+          <span class="slide-number">19 / 24</span>
+          <span class="meta">Analyze · Edit · Add cues · Export</span>
+        </footer>
+      </section>
+
       <section class="slide" data-title="Perform Haptics" aria-label="第 9 页，共 10 页">
         <header class="slide-header">
           <div class="eyebrow">08 · Perform / Haptics</div>
@@ -2414,6 +3057,54 @@
         <footer class="slide-footer">
           <span class="slide-number">09 / 10</span>
           <span class="meta">Haptic guidance · Wearable devices</span>
+        </footer>
+      </section>
+
+      <section class="slide" data-title="Haptic Apps Detail" aria-label="iOS 与 Android 震感应用详情页" style="--detail-accent: var(--coral)">
+        <header class="slide-header">
+          <div class="eyebrow">Perform · Product detail</div>
+          <div class="meta">iWatch · Mi Band demo</div>
+        </header>
+        <div class="slide-body detail-placeholder-body">
+          <div class="detail-placeholder-heading reveal" style="--i: 0">
+            <span class="meta">03B / Perform</span>
+            <h2>iOS + Android<br />震感应用</h2>
+          </div>
+          <div class="haptic-app-video-frame reveal" style="--i: 1">
+            <span class="haptic-app-video-label">App demo</span>
+            <video src="media/haptic-app-demo.mp4" poster="media/haptic-app-demo-poster.jpg" playsinline controls preload="metadata" aria-label="iOS 与 Android 震感应用演示视频"></video>
+          </div>
+        </div>
+        <footer class="slide-footer">
+          <span class="slide-number">21 / 24</span>
+          <span class="meta">iWatch · Mi Band</span>
+        </footer>
+      </section>
+
+      <section class="slide light" data-title="Independent Hardware Detail" aria-label="独立硬件方案详情页" style="--detail-accent: var(--coral)">
+        <header class="slide-header">
+          <div class="eyebrow">Perform · Product detail</div>
+          <div class="meta">Independent hardware · Prototype demos</div>
+        </header>
+        <div class="slide-body detail-placeholder-body">
+          <div class="detail-placeholder-heading reveal" style="--i: 0">
+            <span class="meta">03C / Perform</span>
+            <h2>独立硬件<br />方案</h2>
+          </div>
+          <div class="hardware-video-grid">
+            <div class="hardware-video-frame reveal" style="--i: 1">
+              <span class="hardware-video-label">Prototype 01</span>
+              <video src="media/hardware-demo-1.mp4" poster="media/hardware-demo-1-poster.jpg" playsinline controls preload="metadata" aria-label="独立震感硬件原型一演示视频"></video>
+            </div>
+            <div class="hardware-video-frame reveal" style="--i: 2">
+              <span class="hardware-video-label">Prototype 02</span>
+              <video src="media/hardware-demo-2.mp4" poster="media/hardware-demo-2-poster.jpg" playsinline controls preload="metadata" aria-label="独立震感硬件原型二演示视频"></video>
+            </div>
+          </div>
+        </div>
+        <footer class="slide-footer">
+          <span class="slide-number">22 / 24</span>
+          <span class="meta">Independent haptic hardware</span>
         </footer>
       </section>
 
@@ -2458,7 +3149,7 @@
         </header>
         <div class="slide-body finale-layout">
           <h2 class="display title-xl reveal" style="--i: 0">SEE. FEEL.<br /><span class="highlight">MOVE TOGETHER.</span></h2>
-          <p class="finale-sub reveal" style="--i: 1">不只是帮助 Deaf dancers 跟上音乐，<br />而是让他们拥有并创造新的舞蹈语言。</p>
+          <p class="finale-sub reveal" style="--i: 1">不只是帮助 Dancers 跟上音乐，<br />而是让他们拥有并创造新的舞蹈语言。</p>
           <div class="final-beats reveal" style="--i: 2" aria-hidden="true">
             <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
           </div>
@@ -2478,6 +3169,11 @@
       </button>
       <div class="help" aria-hidden="true"><span>← → Navigate</span><span>F Fullscreen</span></div>
       <input id="video-input" type="file" accept="video/*" hidden />
+      <figure class="image-lightbox" id="image-lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="图片大图预览">
+        <button class="lightbox-close" id="lightbox-close" type="button" aria-label="关闭大图">×</button>
+        <img id="lightbox-image" src="" alt="" />
+        <figcaption id="lightbox-caption"></figcaption>
+      </figure>
     </main>
 
     <script>
@@ -2488,6 +3184,10 @@
         const progressBar = document.querySelector(".progress-bar");
         const videoInput = document.querySelector("#video-input");
         const languageToggle = document.querySelector("#language-toggle");
+        const imageLightbox = document.querySelector("#image-lightbox");
+        const lightboxImage = document.querySelector("#lightbox-image");
+        const lightboxCaption = document.querySelector("#lightbox-caption");
+        const lightboxClose = document.querySelector("#lightbox-close");
         let index = 0;
         let pendingVideoSlot = null;
         let touchStartX = 0;
@@ -2525,6 +3225,14 @@
           ["校准个人动作，与队友保持节奏和空间同步。", "Calibrate movement and stay synchronized with the team."],
           ["稳定接收舞台提示，并表达独特的 Deaf identity。", "Receive reliable stage cues and express a distinct Deaf identity."],
           ["真正的问题，是音乐信息没有被转换为舞者能够稳定感知和使用的形式。", "The real gap is that musical information has not been translated into a form dancers can reliably perceive and use."],
+          ["04 · 痛点", "04 · Pain points"],
+          ["信息在持续流失", "Information keeps getting lost"],
+          ["问题不在", "THE GAP IS NOT"],
+          ["舞者。", "THE DANCER."],
+          ["不确定", "Uncertain"],
+          ["难同步", "Disconnected"],
+          ["缺乏保障", "Exposed"],
+          ["设计机会", "Design opportunity"],
           ["节奏与动作难以同时理解，频繁暂停、回放和猜测。", "Rhythm and movement are hard to process together, leading to constant pausing, replaying, and guessing."],
           ["个人动作、队形位置与团队节奏缺少共同参照。", "Individual movement, formation, and team rhythm lack a shared reference."],
           ["现场提示不稳定，辅助技术也未能成为舞台表达的一部分。", "Stage cues are unreliable, while assistive technology remains separate from creative expression."],
@@ -2532,6 +3240,7 @@
           ["可见、可触、可协作", "visible, tangible, and collaborative"],
           ["的信息。", "information."],
           ["不是六个孤立功能，而是一套贯穿学、练、演的多感官舞蹈系统。", "Not six isolated features, but one multisensory dance system spanning learning, practice, and performance."],
+          ["团队分工", "Team roles"],
           ["七条工作流，", "Seven workstreams,"],
           ["合成一个产品。", "one unified product."],
           ["团队并行探索学、练、演中的不同机会，最后将所有能力整合为一套连贯体验。", "The team explored opportunities across learning, practice, and performance in parallel, then consolidated every capability into one coherent experience."],
@@ -2540,6 +3249,27 @@
           ["Consolidate 合成一个产品", "Consolidate into one product"],
           ["来看看我们", "Now, let’s see"],
           ["整体的体验吧！", "the complete experience!"],
+          ["扒舞", "Dance learning"],
+          ["播放器", "player"],
+          ["队形", "Formation"],
+          ["设计", "design"],
+          ["把“站哪、何时走、", "Turn “where to stand, when to move,"],
+          ["怎么改”变成", "and how to adjust” into a"],
+          ["可见标准。", "visible standard."],
+          ["老师设置队形与关键时间，舞者获得个人路线；排练后再用固定机位视频，对照站位、间距与到位时机。", "The instructor sets formations and key moments, giving each dancer a personal route. After rehearsal, fixed-camera video helps compare position, spacing, and arrival timing."],
+          ["设定队形", "Set formation"],
+          ["人数 · 模板 · 关键时间", "Dancers · Template · Key moments"],
+          ["分发路线", "Share routes"],
+          ["个人站位 · 路线 · 时机", "Personal position · Route · Timing"],
+          ["复盘偏差", "Review differences"],
+          ["偏移图 · 教练式反馈", "Offset map · Coaching feedback"],
+          ["动作", "Motion"],
+          ["校准", "calibration"],
+          ["演出", "Performance"],
+          ["视觉", "visuals"],
+          ["震感应用", "haptic apps"],
+          ["独立硬件", "Independent hardware"],
+          ["方案", "solution"],
           ["看见节奏，", "See the rhythm,"],
           ["拆解动作。", "break down movement."],
           ["把歌曲结构、八拍、动作段落和视频控制放在同一个视野中，减少反复猜测。", "Bring song structure, eight-counts, movement sections, and video controls into one view to reduce repeated guesswork."],
@@ -2564,6 +3294,16 @@
           ["节奏提示", "Rhythm cues"],
           ["舞台输出", "Stage output"],
           ["制作表演视觉", "Performance visual maker"],
+          ["演出视觉编辑器", "Performance Visual Editor"],
+          ["听不到音乐，怎么制作匹配音乐节奏的演出视频？", "How can you create performance visuals aligned to music you cannot hear?"],
+          ["上传并解析音乐", "Upload and analyze music"],
+          ["剪辑视频", "Edit video"],
+          ["对应痛点：听不见音乐，无法匹配视频速度、对齐音乐", "Pain point: Without hearing the music, it is difficult to match video speed and align to the track."],
+          ["叠加视觉节奏信号", "Add visual rhythm cues"],
+          ["对应痛点：现场演出时仅能通过同伴获取信号，自己找不到节奏", "Pain point: On stage, dancers depend on teammates for cues and cannot independently locate the beat."],
+          ["导出视频", "Export video"],
+          ["利用 AIGC 直接生成", "Generate directly with AIGC"],
+          ["含有视觉信号的模板", "Templates with embedded visual cues"],
           ["触摸节奏，", "Feel the rhythm,"],
           ["稳定登台。", "perform with confidence."],
           ["通过独立硬件、iWatch 或小米手环提供稳定且可定制的震感提示，让舞者在舞台上持续感知节拍。", "Independent hardware, iWatch, or Mi Band deliver reliable, customizable haptic cues so dancers can keep sensing the beat on stage."],
@@ -2583,7 +3323,7 @@
           ["想继续", "Want to keep"],
           ["使用", "using it"],
           ["真实逐字反馈待添加", "Verbatim feedback to be added"],
-          ["不只是帮助 Deaf dancers 跟上音乐，", "Not just helping Deaf dancers keep up with music,"],
+          ["不只是帮助 Dancers 跟上音乐，", "Not just helping dancers keep up with music,"],
           ["而是让他们拥有并创造新的舞蹈语言。", "but enabling them to own and create a new language of dance."]
         ]);
         const enToZh = new Map(Array.from(zhToEn, ([zh, en]) => [en, zh]));
@@ -2630,6 +3370,22 @@
           updateLanguageUI();
         }
 
+        function openLightbox(button) {
+          const caption = language === "zh" ? button.dataset.captionZh : button.dataset.captionEn;
+          lightboxImage.src = button.dataset.lightboxSrc;
+          lightboxImage.alt = caption;
+          lightboxCaption.textContent = caption;
+          imageLightbox.classList.add("open");
+          imageLightbox.setAttribute("aria-hidden", "false");
+          lightboxClose.focus();
+        }
+
+        function closeLightbox() {
+          imageLightbox.classList.remove("open");
+          imageLightbox.setAttribute("aria-hidden", "true");
+          lightboxImage.src = "";
+        }
+
         slides.forEach((slide, slideIndex) => {
           const current = String(slideIndex + 1).padStart(2, "0");
           const total = String(slides.length).padStart(2, "0");
@@ -2669,8 +3425,20 @@
         prevButton.addEventListener("click", () => goTo(index - 1));
         nextButton.addEventListener("click", () => goTo(index + 1));
         languageToggle.addEventListener("click", () => setLanguage(language === "zh" ? "en" : "zh"));
+        document.querySelectorAll("[data-lightbox-src]").forEach((button) => {
+          button.addEventListener("click", () => openLightbox(button));
+        });
+        lightboxClose.addEventListener("click", closeLightbox);
+        imageLightbox.addEventListener("click", (event) => {
+          if (event.target === imageLightbox) closeLightbox();
+        });
 
         document.addEventListener("keydown", (event) => {
+          if (imageLightbox.classList.contains("open")) {
+            event.preventDefault();
+            if (event.key === "Escape") closeLightbox();
+            return;
+          }
           if (event.target instanceof HTMLVideoElement) return;
           if (event.key === "ArrowRight" || event.key === "PageDown" || event.key === " ") {
             event.preventDefault();
