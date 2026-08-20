@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#0b0b0d" />
     <title>See the Beat — Deaf K-pop Dancer Product Design</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet" />
+    <link rel="preload" href="media/ai-for-good-presentation.jpg?v=3" as="image" />
+    <link rel="preload" href="media/project-origin-message.png?v=3" as="image" />
     <style>
       :root {
         --ink: #0b0b0d;
@@ -151,6 +156,27 @@
         color: var(--paper-dim);
       }
 
+      .sound-toggle {
+        border: 1px solid transparent;
+        padding: 0.4rem 0.55rem;
+        background: transparent;
+        cursor: pointer;
+        transition:
+          border-color 180ms ease,
+          color 180ms ease;
+      }
+
+      .sound-toggle:hover,
+      .sound-toggle:focus-visible {
+        border-color: currentColor;
+        color: var(--paper);
+        outline: none;
+      }
+
+      .sound-toggle[aria-pressed="false"] {
+        color: var(--coral);
+      }
+
       .light .meta,
       .coral .meta {
         color: rgba(11, 11, 13, 0.56);
@@ -261,15 +287,28 @@
 
       .cover-kicker {
         margin-bottom: 1rem;
-        font-size: clamp(0.9rem, 1.5vw, 1.35rem);
+        font-size: clamp(1.15rem, 2vw, 2rem);
         letter-spacing: 0.18em;
         text-transform: uppercase;
       }
 
+      .cover-kicker strong {
+        font-weight: 700;
+      }
+
+      .cover-operator {
+        font-weight: 400;
+        text-transform: none;
+      }
+
       .cover-question {
-        align-self: center;
-        border-left: 1px solid var(--coral);
-        padding-left: 1.5rem;
+        position: absolute;
+        top: calc(13% + clamp(3rem, 5.5vw, 5.5rem));
+        right: calc(6% + clamp(3rem, 5.5vw, 5.5rem));
+        width: min(44rem, 58vw);
+        text-align: right;
+        transform: translateY(-50%);
+        z-index: 1;
       }
 
       .cover-question p:first-child {
@@ -282,9 +321,19 @@
       }
 
       .cover-question p:last-child {
-        font-family: "Songti SC", "STSong", serif;
+        font-family: "Caveat", cursive;
         font-size: clamp(1.25rem, 2.25vw, 2.1rem);
         line-height: 1.55;
+      }
+
+      .cover-question p.cover-description {
+        min-height: 1.55em;
+        margin-bottom: 0;
+        padding-right: 0.9em;
+        font-weight: 500;
+        letter-spacing: 0;
+        text-transform: none;
+        white-space: nowrap;
       }
 
       .beat-orbit {
@@ -358,8 +407,19 @@
         text-transform: uppercase;
       }
 
+      .experience-title .experience-kicker {
+        padding-bottom: 0.4rem;
+        font-family: var(--body);
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        line-height: normal;
+        text-transform: uppercase;
+      }
+
       .experience-stage {
         position: relative;
+        align-self: stretch;
         min-height: 0;
         border: 1px solid currentColor;
         overflow: hidden;
@@ -388,6 +448,73 @@
         display: grid;
         place-items: center;
         text-align: center;
+      }
+
+      .experience-player {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        display: block;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        background: var(--ink);
+        object-fit: contain;
+      }
+
+      .local-video-cover {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        display: grid;
+        place-items: center;
+        border: 0;
+        color: var(--paper);
+        background:
+          linear-gradient(rgba(11, 11, 13, 0.08), rgba(11, 11, 13, 0.32)),
+          url("media/dance-with-sound-poster.png") center / contain no-repeat,
+          var(--ink);
+        cursor: pointer;
+      }
+
+      .local-video-cover[hidden] {
+        display: none;
+      }
+
+      .local-video-cover span {
+        display: grid;
+        place-items: center;
+        width: clamp(4rem, 6vw, 6rem);
+        aspect-ratio: 1;
+        border: 1px solid currentColor;
+        border-radius: 50%;
+        background: rgba(11, 11, 13, 0.42);
+        font-size: clamp(1.1rem, 1.8vw, 1.7rem);
+        backdrop-filter: blur(8px);
+      }
+
+      .origin-collage::before,
+      .origin-collage::after {
+        display: none;
+      }
+
+      .origin-event-photo {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+      }
+
+      .origin-message-card {
+        position: absolute;
+        right: 3%;
+        bottom: 5%;
+        z-index: 1;
+        width: min(58%, 44rem);
+        height: auto;
+        filter: drop-shadow(0 1rem 1.6rem rgba(11, 11, 13, 0.28));
       }
 
       .experience-placeholder span {
@@ -2656,7 +2783,15 @@
         }
 
         .cover-question {
+          position: static;
+          width: auto;
           margin-top: 2rem;
+          text-align: left;
+          transform: none;
+        }
+
+        .cover-question p.cover-description {
+          white-space: normal;
         }
 
         .portrait-field,
@@ -2827,14 +2962,15 @@
         </header>
         <div class="slide-body cover-layout">
           <div>
-            <p class="cover-kicker reveal" style="--i: 0">Dance beyond sound</p>
+            <p class="cover-kicker reveal" style="--i: 0">
+              <strong>GIVE</strong> <span class="cover-operator">x</span> <strong>AI</strong>
+            </p>
             <h1 class="display title-xl reveal" style="--i: 1">
               SEE<br />THE <span class="highlight">BEAT.</span>
             </h1>
           </div>
-          <div class="cover-question reveal" style="--i: 3">
-            <p>Design question</p>
-            <p>当音乐无法被完整听见，舞者如何感知节奏、学习动作并完成表演？</p>
+          <div class="cover-question">
+            <p class="cover-description" data-typing>Design for deaf K-pop dancer with AI</p>
           </div>
           <div class="beat-orbit" aria-hidden="true"></div>
         </div>
@@ -2844,31 +2980,34 @@
         </footer>
       </section>
 
-      <section class="slide" data-title="Dance With Sound" aria-label="有声音的跳舞">
+      <section class="slide" data-title="Dance With Sound" aria-label="First, watch a K-pop video">
         <header class="slide-header">
-          <div class="eyebrow">Opening experiment · 01</div>
-          <div class="meta">Sound on</div>
+          <div class="eyebrow">01</div>
+          <button class="meta sound-toggle" type="button" data-sound-toggle aria-pressed="true" aria-label="Turn sound off">Sound on</button>
         </header>
         <div class="slide-body experience-body">
           <div class="experience-title">
-            <h2 class="reveal" style="--i: 0">有声音的跳舞</h2>
-            <p class="reveal" style="--i: 1">First, watch it as usual</p>
+            <h2 class="experience-kicker reveal" style="--i: 0">First, watch a K-pop video</h2>
           </div>
           <div class="experience-stage reveal" style="--i: 2">
-            <div class="experience-placeholder">
-              <div><span class="play-mark">▶</span><span class="placeholder-label">Video placeholder · Sound on</span></div>
-            </div>
-            <div class="sound-wave" aria-hidden="true">
-              <span style="--h: 24"></span><span style="--h: 48"></span><span style="--h: 72"></span><span style="--h: 38"></span>
-              <span style="--h: 82"></span><span style="--h: 56"></span><span style="--h: 94"></span><span style="--h: 44"></span>
-              <span style="--h: 68"></span><span style="--h: 34"></span><span style="--h: 78"></span><span style="--h: 51"></span>
-              <span style="--h: 88"></span><span style="--h: 42"></span><span style="--h: 63"></span><span style="--h: 28"></span>
-            </div>
+            <video
+              id="opening-video"
+              class="experience-player"
+              src="media/dance-with-sound.mp4"
+              poster="media/dance-with-sound-poster.png"
+              aria-label="Deaf dancers performing GO!"
+              playsinline
+              controls
+              preload="metadata"
+            ></video>
+            <button class="local-video-cover" type="button" data-local-video-cover aria-label="Play local dance video">
+              <span aria-hidden="true">▶</span>
+            </button>
           </div>
         </div>
         <footer class="slide-footer">
           <span class="slide-number">02 / 13</span>
-          <span class="meta">Video to be added</span>
+          <span class="meta">Local video · Sound on</span>
         </footer>
       </section>
 
@@ -2879,25 +3018,16 @@
         </header>
         <div class="slide-body experience-body">
           <div class="experience-title">
-            <h2 class="reveal" style="--i: 0">现在，把声音关掉。</h2>
-            <p class="reveal" style="--i: 1">Watch the same dance again</p>
+            <p class="reveal" style="--i: 1">Behind the scenes</p>
           </div>
-          <div class="experience-stage sound-off-stage reveal" style="--i: 2">
-            <span class="mute-mark">Muted</span>
-            <div class="experience-placeholder">
-              <div><span class="play-mark">▶</span><span class="placeholder-label">Video placeholder · Sound off</span></div>
-            </div>
-            <div class="sound-wave" aria-hidden="true">
-              <span style="--h: 24"></span><span style="--h: 48"></span><span style="--h: 72"></span><span style="--h: 38"></span>
-              <span style="--h: 82"></span><span style="--h: 56"></span><span style="--h: 94"></span><span style="--h: 44"></span>
-              <span style="--h: 68"></span><span style="--h: 34"></span><span style="--h: 78"></span><span style="--h: 51"></span>
-              <span style="--h: 88"></span><span style="--h: 42"></span><span style="--h: 63"></span><span style="--h: 28"></span>
-            </div>
+          <div class="experience-stage origin-collage reveal" style="--i: 2">
+            <img class="origin-event-photo" src="media/ai-for-good-presentation.jpg?v=3" alt="AI for Good 2026 spring competition presentation" loading="eager" decoding="sync" />
+            <img class="origin-message-card" src="media/project-origin-message.png?v=3" alt="Message proposing an AI for Good project supporting Deaf dancers" loading="eager" decoding="sync" />
           </div>
         </div>
         <footer class="slide-footer">
           <span class="slide-number">03 / 13</span>
-          <span class="meta">Video to be added</span>
+          <span class="meta">AI for Good · Project origin</span>
         </footer>
       </section>
 
@@ -3110,7 +3240,7 @@
               <span class="team-index">04</span><div class="team-role"><strong>动作骨骼校准</strong><span>@Andy</span></div>
             </div>
             <div class="team-row reveal" style="--i: 3">
-              <span class="team-index">05</span><div class="team-role"><strong>制作表演视觉</strong><span>@Yitong · @Xiaohan · @siliang</span></div>
+              <span class="team-index">05</span><div class="team-role"><strong>制作表演视觉</strong><span>@Yitong · @Xiaohan · @Siliang</span></div>
             </div>
             <div class="team-row reveal" style="--i: 4">
               <span class="team-index">06</span>
@@ -3325,7 +3455,7 @@
               <span>自定义素材</span><span>视觉模版</span><span>节奏提示</span><span>舞台输出</span>
             </div>
             <div class="product-credits reveal" style="--i: 4">
-              <div class="credit-row"><strong>制作表演视觉</strong><span>@Yitong · @Xiaohan · @siliang</span></div>
+              <div class="credit-row"><strong>制作表演视觉</strong><span>@Yitong · @Xiaohan · @Siliang</span></div>
             </div>
           </div>
           <div class="product-frame reveal" style="--i: 2">
@@ -3578,6 +3708,10 @@
         const lightboxImage = document.querySelector("#lightbox-image");
         const lightboxCaption = document.querySelector("#lightbox-caption");
         const lightboxClose = document.querySelector("#lightbox-close");
+        const openingVideo = document.querySelector("#opening-video");
+        const soundToggle = document.querySelector("[data-sound-toggle]");
+        const typingTimers = new Map();
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         let index = 0;
         let pendingVideoSlot = null;
         let touchStartX = 0;
@@ -3802,6 +3936,47 @@
           lightboxImage.src = "";
         }
 
+        function stopTyping(slide) {
+          slide.querySelectorAll("[data-typing]").forEach((target) => {
+            window.clearTimeout(typingTimers.get(target));
+            typingTimers.delete(target);
+            target.classList.remove("typing");
+            if (target.dataset.typingText) target.textContent = target.dataset.typingText;
+          });
+        }
+
+        function playTyping(slide) {
+          slide.querySelectorAll("[data-typing]").forEach((target) => {
+            const fullText = target.dataset.typingText || target.textContent.trim();
+            const characters = Array.from(fullText);
+            target.dataset.typingText = fullText;
+            window.clearTimeout(typingTimers.get(target));
+
+            if (reduceMotion) {
+              target.textContent = fullText;
+              target.classList.remove("typing");
+              return;
+            }
+
+            target.textContent = "";
+            target.classList.add("typing");
+            let position = 0;
+
+            const typeNextCharacter = () => {
+              position += 1;
+              target.textContent = characters.slice(0, position).join("");
+              if (position < characters.length) {
+                typingTimers.set(target, window.setTimeout(typeNextCharacter, 48));
+              } else {
+                typingTimers.delete(target);
+                target.classList.remove("typing");
+              }
+            };
+
+            typingTimers.set(target, window.setTimeout(typeNextCharacter, 650));
+          });
+        }
+
         slides.forEach((slide, slideIndex) => {
           const current = String(slideIndex + 1).padStart(2, "0");
           const total = String(slides.length).padStart(2, "0");
@@ -3815,6 +3990,7 @@
           if (bounded === index && slides[index].classList.contains("active")) return;
 
           const current = slides[index];
+          stopTyping(current);
           current.classList.remove("active");
           current.classList.add("leaving");
           window.setTimeout(() => current.classList.remove("leaving"), 540);
@@ -3825,6 +4001,7 @@
           requestAnimationFrame(() => {
             next.classList.add("active");
             next.style.removeProperty("transform");
+            playTyping(next);
           });
 
           prevButton.disabled = index === 0;
@@ -3896,6 +4073,29 @@
           });
         });
 
+        document.querySelectorAll("[data-local-video-cover]").forEach((cover) => {
+          const video = cover.parentElement.querySelector("video");
+          cover.addEventListener("click", () => video?.play());
+          video?.addEventListener("play", () => {
+            cover.hidden = true;
+          });
+        });
+
+        function updateSoundToggle() {
+          if (!openingVideo || !soundToggle) return;
+          const soundOn = !openingVideo.muted;
+          soundToggle.textContent = soundOn ? "Sound on" : "Sound off";
+          soundToggle.setAttribute("aria-pressed", String(soundOn));
+          soundToggle.setAttribute("aria-label", soundOn ? "Turn sound off" : "Turn sound on");
+        }
+
+        soundToggle?.addEventListener("click", () => {
+          if (!openingVideo) return;
+          openingVideo.muted = !openingVideo.muted;
+        });
+        openingVideo?.addEventListener("volumechange", updateSoundToggle);
+        updateSoundToggle();
+
         videoInput.addEventListener("change", () => {
           const file = videoInput.files?.[0];
           if (!file || !pendingVideoSlot) return;
@@ -3923,6 +4123,9 @@
         const savedLanguage = localStorage.getItem("deaf-kpop-deck-language");
         if (savedLanguage === "en") setLanguage("en");
         else updateLanguageUI();
+        if (slides[index].classList.contains("active")) {
+          playTyping(slides[index]);
+        }
       })();
     </script>
   </body>
