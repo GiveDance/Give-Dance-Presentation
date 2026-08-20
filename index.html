@@ -1189,26 +1189,110 @@
         translate: -50% -50%;
       }
 
-      .haptic-app-video-frame {
+      .detail-product-name {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        align-items: baseline;
+        gap: 0.8rem;
+        margin-bottom: clamp(0.85rem, 1.8vh, 1.25rem);
+      }
+
+      .detail-product-name span {
+        font-size: clamp(0.58rem, 0.7vw, 0.68rem);
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        opacity: 0.56;
+      }
+
+      .detail-product-name strong {
+        color: var(--product-name-accent, var(--detail-accent, var(--coral)));
+        font-family: var(--display);
+        font-size: clamp(1.2rem, 1.7vw, 1.75rem);
+        font-weight: 800;
+        line-height: 1.05;
+        letter-spacing: -0.025em;
+      }
+
+      .learning-player-detail-body {
+        grid-template-columns: minmax(27rem, 0.82fr) minmax(0, 1.18fr);
+        gap: 4vw;
+      }
+
+      .learning-player-copy {
+        align-self: center;
+      }
+
+      .learning-player-copy h2 {
+        font-family: var(--display);
+        font-size: clamp(2.8rem, 4.2vw, 4.7rem);
+        font-weight: 800;
+        line-height: 0.94;
+        letter-spacing: -0.05em;
+      }
+
+      .learning-player-copy h2 span {
+        color: var(--coral);
+      }
+
+      .learning-player-copy .lead {
+        margin-top: clamp(1rem, 2.2vh, 1.6rem);
+        max-width: 44ch;
+        font-size: clamp(0.78rem, 0.98vw, 0.94rem);
+        line-height: 1.6;
+      }
+
+      .learning-player-capabilities {
+        display: grid;
+        margin-top: clamp(1.1rem, 2.5vh, 1.9rem);
+        border-top: 1px solid color-mix(in srgb, currentColor 36%, transparent);
+      }
+
+      .learning-player-capability {
+        display: grid;
+        grid-template-columns: 2.1rem minmax(4.5rem, 0.48fr) minmax(0, 1.52fr);
+        align-items: center;
+        gap: 0.75rem;
+        padding: clamp(0.62rem, 1.2vh, 0.9rem) 0;
+        border-bottom: 1px solid color-mix(in srgb, currentColor 24%, transparent);
+      }
+
+      .learning-player-capability .index {
+        color: var(--coral);
+        font-family: var(--display);
+        font-size: clamp(1.15rem, 1.55vw, 1.6rem);
+        font-weight: 800;
+      }
+
+      .learning-player-capability strong {
+        font-size: clamp(0.8rem, 0.98vw, 0.94rem);
+      }
+
+      .learning-player-capability span:last-child {
+        font-size: clamp(0.65rem, 0.8vw, 0.78rem);
+        line-height: 1.4;
+        opacity: 0.62;
+      }
+
+      .learning-player-video-frame {
         position: relative;
         align-self: center;
-        justify-self: end;
-        width: min(100%, 54rem);
-        aspect-ratio: 880 / 710;
-        border: 1px solid currentColor;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border: 1px solid color-mix(in srgb, currentColor 65%, transparent);
         background: var(--ink);
-        box-shadow: 1rem 1rem 0 color-mix(in srgb, currentColor 12%, transparent);
+        box-shadow: 1rem 1rem 0 color-mix(in srgb, var(--coral) 22%, transparent);
         overflow: hidden;
       }
 
-      .haptic-app-video-frame video {
+      .learning-player-video-frame video {
         display: block;
         width: 100%;
         height: 100%;
         object-fit: contain;
       }
 
-      .haptic-app-video-label {
+      .learning-player-video-label {
         position: absolute;
         top: 0.75rem;
         right: 0.75rem;
@@ -1223,6 +1307,123 @@
         pointer-events: none;
       }
 
+      .haptic-app-detail-body {
+        grid-template-columns: minmax(12rem, 0.42fr) minmax(0, 1.2fr) minmax(12rem, 0.48fr);
+        align-items: center;
+        gap: 2vw;
+      }
+
+      .haptic-app-copy .meta {
+        display: block;
+        margin-bottom: 0.75rem;
+      }
+
+      .haptic-app-copy h2 {
+        font-family: var(--display);
+        font-size: clamp(2.5rem, 3.8vw, 4.2rem);
+        font-weight: 800;
+        line-height: 0.94;
+        letter-spacing: -0.05em;
+      }
+
+      .haptic-app-notes {
+        display: grid;
+        margin-top: clamp(1.2rem, 2.8vh, 2rem);
+        border-top: 1px solid color-mix(in srgb, currentColor 32%, transparent);
+      }
+
+      .haptic-app-note {
+        display: grid;
+        gap: 0.18rem;
+        padding: 0.7rem 0;
+        border-bottom: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+      }
+
+      .haptic-app-note strong {
+        font-size: clamp(0.72rem, 0.9vw, 0.86rem);
+      }
+
+      .haptic-app-note span {
+        font-size: 0.58rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        opacity: 0.52;
+        text-transform: uppercase;
+      }
+
+      .vibebeat-main-frame,
+      .vibebeat-side-video,
+      .vibebeat-device-photo {
+        position: relative;
+        border: 1px solid color-mix(in srgb, currentColor 46%, transparent);
+        background: var(--ink);
+        overflow: hidden;
+      }
+
+      .vibebeat-main-frame {
+        align-self: center;
+        width: 100%;
+        aspect-ratio: 3 / 2;
+        box-shadow: 0.8rem 0.8rem 0 color-mix(in srgb, var(--coral) 22%, transparent);
+      }
+
+      .vibebeat-main-frame video,
+      .vibebeat-side-video video {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .vibebeat-side-stack {
+        align-self: center;
+        display: grid;
+        grid-template-rows: minmax(0, 1fr) minmax(0, 0.72fr);
+        gap: clamp(0.7rem, 1.2vh, 1rem);
+        height: min(59vh, 37rem);
+        min-height: 0;
+      }
+
+      .vibebeat-device-photo {
+        display: block;
+        width: 100%;
+        padding: 0;
+        cursor: zoom-in;
+      }
+
+      .vibebeat-device-photo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: transform 300ms var(--ease);
+      }
+
+      .vibebeat-device-photo:hover img,
+      .vibebeat-device-photo:focus-visible img {
+        transform: scale(1.025);
+      }
+
+      .vibebeat-device-photo:focus-visible {
+        outline: 2px solid var(--coral);
+        outline-offset: 3px;
+      }
+
+      .vibebeat-media-label {
+        position: absolute;
+        top: 0.6rem;
+        right: 0.6rem;
+        z-index: 1;
+        padding: 0.36rem 0.5rem;
+        background: var(--coral);
+        color: var(--ink);
+        font-size: 0.52rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        pointer-events: none;
+      }
+
       .hardware-video-grid {
         align-self: center;
         display: grid;
@@ -1231,6 +1432,40 @@
         justify-content: center;
         gap: clamp(0.8rem, 1.5vh, 1.2rem);
         min-width: 0;
+      }
+
+      .hardware-detail-body {
+        grid-template-columns: minmax(12rem, 0.42fr) minmax(0, 1.68fr);
+        align-items: center;
+        gap: 2vw;
+      }
+
+      .hardware-detail-body .hardware-video-frame {
+        height: min(59vh, 37rem);
+      }
+
+      .hardware-detail-copy {
+        align-self: center;
+      }
+
+      .hardware-detail-copy h2 {
+        font-family: var(--display);
+        font-size: clamp(2.8rem, 3.9vw, 4.3rem);
+        font-weight: 800;
+        line-height: 0.94;
+        letter-spacing: -0.05em;
+      }
+
+      .hardware-detail-copy h2 span {
+        color: var(--coral);
+      }
+
+      .hardware-detail-copy .lead {
+        margin-top: clamp(1.1rem, 2.5vh, 1.8rem);
+        max-width: 36ch;
+        color: color-mix(in srgb, currentColor 74%, transparent);
+        font-size: clamp(0.75rem, 0.94vw, 0.9rem);
+        line-height: 1.7;
       }
 
       .hardware-video-frame {
@@ -1257,8 +1492,8 @@
         right: 0.65rem;
         z-index: 1;
         padding: 0.34rem 0.5rem;
-        background: var(--ink);
-        color: var(--paper);
+        background: var(--coral);
+        color: var(--ink);
         font-size: 0.54rem;
         font-weight: 800;
         letter-spacing: 0.1em;
@@ -1274,16 +1509,6 @@
 
       .formation-detail-copy {
         align-self: center;
-      }
-
-      .formation-detail-copy .formation-kicker {
-        display: block;
-        margin-bottom: 0.8rem;
-        color: color-mix(in srgb, currentColor 68%, transparent);
-        font-size: clamp(0.7rem, 0.9vw, 0.88rem);
-        font-weight: 800;
-        letter-spacing: 0.13em;
-        text-transform: uppercase;
       }
 
       .formation-detail-copy h2 {
@@ -1361,6 +1586,100 @@
         padding: 0.4rem 0.55rem;
         background: var(--ink);
         color: var(--paper);
+        font-size: 0.56rem;
+        font-weight: 800;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+        pointer-events: none;
+      }
+
+      /* Motion calibration detail */
+      .motion-detail-body {
+        grid-template-columns: minmax(24rem, 0.88fr) minmax(0, 1.12fr);
+        gap: 4vw;
+      }
+
+      .motion-detail-copy {
+        align-self: center;
+      }
+
+      .motion-detail-copy h2 {
+        font-family: var(--display);
+        font-size: clamp(3.2rem, 5vw, 5.6rem);
+        font-weight: 800;
+        line-height: 0.94;
+        letter-spacing: -0.055em;
+      }
+
+      .motion-detail-copy .lead {
+        margin-top: clamp(1.2rem, 2.6vh, 2rem);
+        max-width: 47ch;
+        color: color-mix(in srgb, currentColor 76%, transparent);
+        font-size: clamp(0.78rem, 1vw, 0.98rem);
+        line-height: 1.65;
+      }
+
+      .motion-detail-steps {
+        display: grid;
+        margin-top: clamp(1.2rem, 2.8vh, 2.2rem);
+      }
+
+      .motion-detail-step {
+        padding: clamp(0.65rem, 1.25vh, 0.95rem) 0;
+        border-bottom: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+      }
+
+      .motion-step-heading {
+        display: flex;
+        align-items: baseline;
+        gap: 0.85rem;
+      }
+
+      .motion-step-heading span {
+        color: var(--lime);
+        font-family: var(--display);
+        font-size: clamp(1.15rem, 1.65vw, 1.7rem);
+        font-weight: 800;
+      }
+
+      .motion-step-heading strong {
+        font-size: clamp(0.88rem, 1.08vw, 1.05rem);
+      }
+
+      .motion-detail-step p {
+        margin-top: 0.35rem;
+        color: color-mix(in srgb, currentColor 66%, transparent);
+        font-size: clamp(0.68rem, 0.84vw, 0.82rem);
+        line-height: 1.45;
+      }
+
+      .motion-video-frame {
+        position: relative;
+        align-self: center;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border: 1px solid color-mix(in srgb, currentColor 36%, transparent);
+        border-radius: 0.7rem;
+        background: var(--ink);
+        box-shadow: 1rem 1rem 0 color-mix(in srgb, var(--ink) 16%, transparent);
+        overflow: hidden;
+      }
+
+      .motion-video-frame video {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .motion-video-label {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        z-index: 1;
+        padding: 0.4rem 0.55rem;
+        background: var(--lime);
+        color: var(--ink);
         font-size: 0.56rem;
         font-weight: 800;
         letter-spacing: 0.11em;
@@ -2029,83 +2348,104 @@
       }
 
       /* Feedback */
-      .feedback-body {
-        grid-template-rows: auto 1fr;
-        gap: clamp(2rem, 5vh, 4.5rem);
+      .feedback-video-body {
+        grid-template-columns: minmax(0, 1.58fr) minmax(15rem, 0.42fr);
+        gap: 3vw;
       }
 
-      .feedback-heading {
-        display: grid;
-        grid-template-columns: 1.15fr 0.85fr;
-        align-items: end;
-        gap: 4vw;
-      }
-
-      .feedback-heading .lead {
-        justify-self: end;
-        max-width: 31ch;
-      }
-
-      .feedback-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        min-height: 0;
-        border-top: 1px solid currentColor;
-        border-bottom: 1px solid currentColor;
-      }
-
-      .feedback-card {
+      .feedback-video-frame {
         position: relative;
-        display: grid;
-        grid-template-rows: auto 1fr auto;
-        gap: 1.2rem;
-        padding: clamp(1rem, 2.2vw, 2rem);
-        border-right: 1px solid currentColor;
-      }
-
-      .feedback-card:last-child {
-        border-right: 0;
-      }
-
-      .feedback-card::before {
-        content: "“";
-        position: absolute;
-        top: -0.2em;
-        right: 0.12em;
-        font-family: "Songti SC", "STSong", serif;
-        font-size: clamp(6rem, 11vw, 11rem);
-        line-height: 1;
-        color: var(--coral);
-        opacity: 0.28;
-      }
-
-      .feedback-card .index {
-        font-size: 0.66rem;
-        font-weight: 800;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-      }
-
-      .feedback-card h3 {
         align-self: center;
-        max-width: 7ch;
-        font-family: var(--display);
-        font-size: clamp(2.4rem, 4vw, 4.5rem);
-        line-height: 0.95;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border: 1px solid color-mix(in srgb, currentColor 48%, transparent);
+        border-radius: 0.7rem;
+        background: var(--ink);
+        box-shadow: 1rem 1rem 0 color-mix(in srgb, var(--coral) 22%, transparent);
+        overflow: hidden;
       }
 
-      .feedback-card footer {
-        display: grid;
-        gap: 0.3rem;
-        padding-top: 0.8rem;
-        border-top: 1px solid color-mix(in srgb, currentColor 35%, transparent);
-        font-size: 0.68rem;
-        letter-spacing: 0.08em;
+      .feedback-video-frame video {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .feedback-video-label {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        z-index: 1;
+        padding: 0.4rem 0.55rem;
+        background: var(--coral);
+        color: var(--ink);
+        font-size: 0.56rem;
+        font-weight: 800;
+        letter-spacing: 0.11em;
         text-transform: uppercase;
+        pointer-events: none;
       }
 
-      .feedback-card footer span:last-child {
-        opacity: 0.55;
+      .feedback-summary {
+        align-self: center;
+      }
+
+      .feedback-summary > .meta {
+        display: block;
+        margin-bottom: 0.75rem;
+      }
+
+      .feedback-summary h2 {
+        font-family: var(--display);
+        font-size: clamp(2.2rem, 3.15vw, 3.5rem);
+        font-weight: 800;
+        line-height: 0.96;
+        letter-spacing: -0.045em;
+      }
+
+      .feedback-summary .lead {
+        margin-top: 1rem;
+        max-width: 31ch;
+        color: color-mix(in srgb, currentColor 72%, transparent);
+        font-size: clamp(0.72rem, 0.9vw, 0.86rem);
+        line-height: 1.55;
+      }
+
+      .feedback-signals {
+        display: grid;
+        margin-top: clamp(1rem, 2.2vh, 1.5rem);
+        border-top: 1px solid color-mix(in srgb, currentColor 34%, transparent);
+      }
+
+      .feedback-signal {
+        display: grid;
+        grid-template-columns: 2rem 1fr;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.65rem 0;
+        border-bottom: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+      }
+
+      .feedback-signal span {
+        color: var(--coral);
+        font-size: 0.58rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+      }
+
+      .feedback-signal h3 {
+        font-size: clamp(0.8rem, 1vw, 0.96rem);
+        font-weight: 800;
+      }
+
+      .feedback-source {
+        margin-top: 0.8rem;
+        font-size: 0.58rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        opacity: 0.52;
       }
 
       /* Finale */
@@ -2187,6 +2527,11 @@
       .nav button:disabled {
         opacity: 0.25;
         cursor: default;
+      }
+
+      .nav .home-button {
+        font-size: 1rem;
+        line-height: 1;
       }
 
       .progress {
@@ -2323,7 +2668,11 @@
         .vision-title,
         .team-body,
         .detail-placeholder-body,
-        .formation-detail-body {
+        .formation-detail-body,
+        .motion-detail-body,
+        .haptic-app-detail-body,
+        .hardware-detail-body,
+        .learning-player-detail-body {
           grid-template-columns: 1fr;
         }
 
@@ -2379,6 +2728,10 @@
           min-height: 32vh;
         }
 
+        .motion-video-frame {
+          min-height: 34vh;
+        }
+
         .visual-editor-heading,
         .visual-stage-grid {
           grid-template-columns: 1fr;
@@ -2415,6 +2768,12 @@
           justify-self: center;
         }
 
+        .vibebeat-side-stack {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          grid-template-rows: 1fr;
+          height: 42vh;
+        }
+
         .pain-item {
           min-height: 34vh;
           padding: 1rem;
@@ -2433,19 +2792,12 @@
           gap: 0.15rem;
         }
 
-        .feedback-heading,
-        .feedback-grid {
+        .feedback-video-body {
           grid-template-columns: 1fr;
         }
 
-        .feedback-heading .lead {
-          justify-self: start;
-        }
-
-        .feedback-card {
-          min-height: 32vh;
-          border-right: 0;
-          border-bottom: 1px solid currentColor;
+        .feedback-video-frame {
+          min-height: 34vh;
         }
 
         .help {
@@ -2680,12 +3032,12 @@
 
       <section class="slide light" data-title="Pain Points" aria-label="第 5 页，共 10 页">
         <header class="slide-header">
-          <div class="eyebrow">04 · 痛点</div>
+          <div class="eyebrow">04 · Pain Points</div>
           <div class="meta">信息在持续流失</div>
         </header>
         <div class="slide-body pain-layout">
           <div class="pain-question">
-            <h2 class="display title-md reveal" style="--i: 0">问题不在<br /><span class="highlight">舞者。</span></h2>
+            <h2 class="display title-md reveal" style="--i: 0">阶段中的<span class="highlight">痛点</span></h2>
             <p class="lead reveal" style="--i: 1">真正的问题，是音乐信息没有被转换为舞者能够稳定感知和使用的形式。</p>
           </div>
           <div class="pain-list">
@@ -2762,7 +3114,7 @@
             </div>
             <div class="team-row reveal" style="--i: 4">
               <span class="team-index">06</span>
-              <div class="team-role"><strong>震感产品与硬件</strong><span>iOS · iWatch @Yating · Android · 小米手环 @Yiwei · 独立硬件 @Jean</span></div>
+              <div class="team-role"><strong>震感产品与硬件</strong><span>iOS · iWatch @Yating · Android · 小米手环 @Yiwei · M5硬件方案 @Jean</span></div>
             </div>
             <div class="team-row reveal" style="--i: 4">
               <span class="team-index">07</span><div class="team-role"><strong>Consolidate 合成一个产品</strong><span>@Yumeng</span></div>
@@ -2821,19 +3173,28 @@
 
       <section class="slide light" data-title="Dance Learning Player Detail" aria-label="扒舞播放器详情页" style="--detail-accent: var(--coral)">
         <header class="slide-header">
-          <div class="eyebrow">Learn · Product detail</div>
-          <div class="meta">Content placeholder</div>
+          <div class="eyebrow">06.1 · Learn / Custom player</div>
+          <div class="meta">Visible · Loopable · Shareable</div>
         </header>
-        <div class="slide-body detail-placeholder-body">
-          <div class="detail-placeholder-heading reveal" style="--i: 0">
-            <span class="meta">01 / Learn</span>
-            <h2>扒舞<br />播放器</h2>
+        <div class="slide-body learning-player-detail-body">
+          <div class="learning-player-copy">
+            <div class="detail-product-name reveal" style="--i: 0"><span>01 · Learn</span><strong>扒舞定制播放器</strong></div>
+            <h2 class="reveal" style="--i: 1">看见节拍，<br />循环练习，<br /><span>分享给团队。</span></h2>
+            <p class="lead reveal" style="--i: 2">把听觉节拍转化为可见、可循环、可分享的练舞信息。</p>
+            <div class="learning-player-capabilities reveal" style="--i: 3">
+              <div class="learning-player-capability"><span class="index">01</span><strong>可见</strong><span>AI 节拍分析 · 八拍数字 · 视觉提示</span></div>
+              <div class="learning-player-capability"><span class="index">02</span><strong>可循环</strong><span>镜像慢放 · 八拍循环 · 段落循环</span></div>
+              <div class="learning-player-capability"><span class="index">03</span><strong>可分享</strong><span>动作标记 · 导出 MP4 · 队友同步</span></div>
+            </div>
           </div>
-          <div class="detail-empty-frame reveal" style="--i: 1" aria-hidden="true"></div>
+          <div class="learning-player-video-frame reveal" style="--i: 2">
+            <span class="learning-player-video-label">30s product walkthrough</span>
+            <video src="media/dance-learning-player-demo.mp4" poster="media/dance-learning-player-poster.jpg" playsinline controls preload="metadata" aria-label="扒舞定制播放器核心功能演示视频"></video>
+          </div>
         </div>
         <footer class="slide-footer">
           <span class="slide-number">14 / 24</span>
-          <span class="meta">Dance learning player</span>
+          <span class="meta">AI beat analysis · Loop practice · Team export</span>
         </footer>
       </section>
 
@@ -2894,7 +3255,7 @@
         </header>
         <div class="slide-body formation-detail-body">
           <div class="formation-detail-copy">
-            <span class="formation-kicker reveal" style="--i: 0">Formation calibration loop</span>
+            <div class="detail-product-name reveal" style="--i: 0"><span>02A · Practice</span><strong>队形设计及分发</strong></div>
             <h2 class="reveal" style="--i: 1">把“站哪、何时走、<br />怎么改”变成<span>可见标准。</span></h2>
             <p class="lead reveal" style="--i: 2">老师设置队形与关键时间，舞者获得个人路线；排练后再用固定机位视频，对照站位、间距与到位时机。</p>
             <div class="formation-steps reveal" style="--i: 3">
@@ -2916,19 +3277,37 @@
 
       <section class="slide blue" data-title="Motion Calibration Detail" aria-label="动作校准详情页" style="--detail-accent: var(--coral)">
         <header class="slide-header">
-          <div class="eyebrow">Practice · Product detail</div>
-          <div class="meta">Content placeholder</div>
+          <div class="eyebrow">07.2 · Practice / Motion align</div>
+          <div class="meta">Dance telemetry &amp; choreography</div>
         </header>
-        <div class="slide-body detail-placeholder-body">
-          <div class="detail-placeholder-heading reveal" style="--i: 0">
-            <span class="meta">02B / Practice</span>
-            <h2>动作<br />校准</h2>
+        <div class="slide-body motion-detail-body">
+          <div class="motion-detail-copy">
+            <div class="detail-product-name reveal" style="--i: 0; --product-name-accent: var(--lime)"><span>02B · Practice</span><strong>动作骨骼校准</strong></div>
+            <h2 class="reveal" style="--i: 1">舞姿比对，<br />逐帧分析。</h2>
+            <p class="lead reveal" style="--i: 2">对比标准视频与练习视频，基于 MediaPipe Pose 提取人体关键点，对比标准动作与练习动作，快速定位动作差异，并提供 AI 建议，让每一次练习都有据可循。</p>
+            <div class="motion-detail-steps reveal" style="--i: 3">
+              <div class="motion-detail-step">
+                <div class="motion-step-heading"><span>01</span><strong>综合得分</strong></div>
+                <p>从节奏、体态、动作完成度、稳定性等维度进行分析评分</p>
+              </div>
+              <div class="motion-detail-step">
+                <div class="motion-step-heading"><span>02</span><strong>人体关键点识别 &amp; 姿态追踪</strong></div>
+                <p>提取视频中的人体关键点与动作骨骼，逐帧对比标准动作与练习动作</p>
+              </div>
+              <div class="motion-detail-step">
+                <div class="motion-step-heading"><span>03</span><strong>AI 教练</strong></div>
+                <p>从整体表现到细节动作，发现问题并给出针对性指导，精准定位关键帧</p>
+              </div>
+            </div>
           </div>
-          <div class="detail-empty-frame reveal" style="--i: 1" aria-hidden="true"></div>
+          <div class="motion-video-frame reveal" style="--i: 2">
+            <span class="motion-video-label">Demo</span>
+            <video src="media/motion-calibration-demo.mp4" poster="media/motion-calibration-poster.jpg" playsinline controls preload="metadata" aria-label="舞蹈动作对比分析演示视频"></video>
+          </div>
         </div>
         <footer class="slide-footer">
           <span class="slide-number">17 / 24</span>
-          <span class="meta">Motion calibration</span>
+          <span class="meta">Dance pose comparison · AI coaching</span>
         </footer>
       </section>
 
@@ -3035,12 +3414,12 @@
           <div class="feature-copy">
             <span class="meta reveal" style="--i: 0">03B / Performance experience</span>
             <h2 class="display title-lg reveal" style="--i: 1">触摸节奏，<br />稳定登台。</h2>
-            <p class="lead reveal" style="--i: 2">通过独立硬件、iWatch 或小米手环提供稳定且可定制的震感提示，让舞者在舞台上持续感知节拍。</p>
+            <p class="lead reveal" style="--i: 2">通过 M5硬件、iWatch 或小米手环提供稳定且可定制的震感提示，让舞者在舞台上持续感知节拍。</p>
             <div class="feature-tags reveal" style="--i: 3">
-              <span>iWatch 震感</span><span>小米手环</span><span>独立硬件</span><span>实时联动</span>
+              <span>iWatch 震感</span><span>小米手环</span><span>M5硬件方案</span><span>实时联动</span>
             </div>
             <div class="product-credits reveal" style="--i: 4">
-              <div class="credit-row"><strong>独立硬件</strong><span>@Jean</span></div>
+              <div class="credit-row"><strong>M5硬件方案</strong><span>@Jean</span></div>
               <div class="credit-row"><strong>iOS · iWatch 震感应用</strong><span>@Yating</span></div>
               <div class="credit-row"><strong>Android · 小米手环</strong><span>@Yiwei</span></div>
             </div>
@@ -3063,33 +3442,48 @@
       <section class="slide" data-title="Haptic Apps Detail" aria-label="iOS 与 Android 震感应用详情页" style="--detail-accent: var(--coral)">
         <header class="slide-header">
           <div class="eyebrow">Perform · Product detail</div>
-          <div class="meta">iWatch · Mi Band demo</div>
+          <div class="meta">VibeBeat MVP · Phone × Watch</div>
         </header>
-        <div class="slide-body detail-placeholder-body">
-          <div class="detail-placeholder-heading reveal" style="--i: 0">
+        <div class="slide-body haptic-app-detail-body">
+          <div class="haptic-app-copy reveal" style="--i: 0">
             <span class="meta">03B / Perform</span>
             <h2>iOS + Android<br />震感应用</h2>
+            <div class="haptic-app-notes">
+              <div class="haptic-app-note"><strong>VibeBeat MVP</strong><span>Main experience</span></div>
+              <div class="haptic-app-note"><strong>iPhone + iWatch</strong><span>Real device test</span></div>
+            </div>
           </div>
-          <div class="haptic-app-video-frame reveal" style="--i: 1">
-            <span class="haptic-app-video-label">App demo</span>
+          <div class="vibebeat-main-frame reveal" style="--i: 1">
+            <span class="vibebeat-media-label">Main · VibeBeat MVP</span>
+            <video src="media/vibebeat-mvp.mp4" poster="media/vibebeat-mvp-poster.jpg" playsinline controls preload="metadata" aria-label="VibeBeat 震感应用主要体验视频"></video>
+          </div>
+          <div class="vibebeat-side-stack">
+            <button class="vibebeat-device-photo reveal" style="--i: 2" type="button" data-lightbox-src="media/vibebeat-iphone-watch.png" data-caption-zh="iPhone 与 iWatch 震感联动实拍" data-caption-en="iPhone and iWatch haptic synchronization">
+              <span class="vibebeat-media-label">Device test</span>
+              <img src="media/vibebeat-iphone-watch.png" alt="iPhone 播放舞蹈视频并与 iWatch 震感联动" />
+            </button>
+            <div class="vibebeat-side-video reveal" style="--i: 3">
+              <span class="vibebeat-media-label">Watch detail</span>
             <video src="media/haptic-app-demo.mp4" poster="media/haptic-app-demo-poster.jpg" playsinline controls preload="metadata" aria-label="iOS 与 Android 震感应用演示视频"></video>
+            </div>
           </div>
         </div>
         <footer class="slide-footer">
           <span class="slide-number">21 / 24</span>
-          <span class="meta">iWatch · Mi Band</span>
+          <span class="meta">VibeBeat MVP · Device synchronization · Haptic guidance</span>
         </footer>
       </section>
 
-      <section class="slide light" data-title="Independent Hardware Detail" aria-label="独立硬件方案详情页" style="--detail-accent: var(--coral)">
+      <section class="slide" data-title="M5 Hardware Detail" aria-label="M5硬件方案详情页" style="--detail-accent: var(--coral)">
         <header class="slide-header">
           <div class="eyebrow">Perform · Product detail</div>
           <div class="meta">Independent hardware · Prototype demos</div>
         </header>
-        <div class="slide-body detail-placeholder-body">
-          <div class="detail-placeholder-heading reveal" style="--i: 0">
-            <span class="meta">03C / Perform</span>
-            <h2>独立硬件<br />方案</h2>
+        <div class="slide-body hardware-detail-body">
+          <div class="hardware-detail-copy">
+            <div class="detail-product-name reveal" style="--i: 0"><span>03C · Perform</span><strong>M5硬件方案</strong></div>
+            <h2 class="reveal" style="--i: 1">让舞者<br /><span>看见声音。</span></h2>
+            <p class="lead reveal" style="--i: 2">通过低成本百元设备（M5）把歌曲中的节拍、重拍、Drop 和段落变化，转换成舞者可以感受到或看到的震动、屏幕颜色、数字倒数和 LED 闪烁，并支持十几只设备同步运行。</p>
           </div>
           <div class="hardware-video-grid">
             <div class="hardware-video-frame reveal" style="--i: 1">
@@ -3113,32 +3507,26 @@
           <div class="eyebrow">09 · Dancer feedback</div>
           <div class="meta">The voices that matter most</div>
         </header>
-        <div class="slide-body feedback-body">
-          <div class="feedback-heading">
-            <h2 class="display title-md reveal" style="--i: 0">他们喜欢它，<br />因为它来自<span class="highlight">真实需要。</span></h2>
-            <p class="lead reveal" style="--i: 1">初步反馈显示，这些设计准确回应了舞者长期以来的实际需求——真正做到了他们心坎里。</p>
+        <div class="slide-body feedback-video-body">
+          <div class="feedback-video-frame reveal" style="--i: 0">
+            <span class="feedback-video-label">Dance group feedback</span>
+            <video src="media/dancer-feedback.mp4" poster="media/dancer-feedback-poster.jpg" playsinline controls preload="metadata" aria-label="舞团负责人体验产品后的反馈视频"></video>
           </div>
-          <div class="feedback-grid">
-            <article class="feedback-card reveal" style="--i: 2">
-              <span class="index">Comment · 01</span>
-              <h3>被<br />看见</h3>
-              <footer><span>真实逐字反馈待添加</span><span>Name · Dance group</span></footer>
-            </article>
-            <article class="feedback-card reveal" style="--i: 3">
-              <span class="index">Comment · 02</span>
-              <h3>被<br />理解</h3>
-              <footer><span>真实逐字反馈待添加</span><span>Name · Dance group</span></footer>
-            </article>
-            <article class="feedback-card reveal" style="--i: 4">
-              <span class="index">Comment · 03</span>
-              <h3>想继续<br />使用</h3>
-              <footer><span>真实逐字反馈待添加</span><span>Name · Dance group</span></footer>
-            </article>
-          </div>
+          <aside class="feedback-summary">
+            <span class="meta reveal" style="--i: 1">Real voice / After product demo</span>
+            <h2 class="reveal" style="--i: 2">他们喜欢它，<br />因为它来自<span class="highlight">真实需要。</span></h2>
+            <p class="lead reveal" style="--i: 3">初步反馈显示，这些设计准确回应了舞者长期以来的实际需求——真正做到了他们心坎里。</p>
+            <div class="feedback-signals reveal" style="--i: 4">
+              <div class="feedback-signal"><span>01</span><h3>被看见</h3></div>
+              <div class="feedback-signal"><span>02</span><h3>被理解</h3></div>
+              <div class="feedback-signal"><span>03</span><h3>想继续使用</h3></div>
+            </div>
+            <p class="feedback-source reveal" style="--i: 4">舞团负责人 · 产品体验反馈</p>
+          </aside>
         </div>
         <footer class="slide-footer">
           <span class="slide-number">14 / 15</span>
-          <span class="meta">Feedback placeholders · Replace with verbatim comments</span>
+          <span class="meta">Dancer feedback · Product validation</span>
         </footer>
       </section>
 
@@ -3161,6 +3549,7 @@
       </section>
 
       <nav class="nav" aria-label="幻灯片导航">
+        <button class="home-button" id="home" aria-label="回到首页" title="回到首页">⌂</button>
         <button id="prev" aria-label="上一页">←</button>
         <button id="next" aria-label="下一页">→</button>
       </nav>
@@ -3180,6 +3569,7 @@
       (() => {
         const slides = Array.from(document.querySelectorAll(".slide"));
         const prevButton = document.querySelector("#prev");
+        const homeButton = document.querySelector("#home");
         const nextButton = document.querySelector("#next");
         const progressBar = document.querySelector(".progress-bar");
         const videoInput = document.querySelector("#video-input");
@@ -3225,10 +3615,9 @@
           ["校准个人动作，与队友保持节奏和空间同步。", "Calibrate movement and stay synchronized with the team."],
           ["稳定接收舞台提示，并表达独特的 Deaf identity。", "Receive reliable stage cues and express a distinct Deaf identity."],
           ["真正的问题，是音乐信息没有被转换为舞者能够稳定感知和使用的形式。", "The real gap is that musical information has not been translated into a form dancers can reliably perceive and use."],
-          ["04 · 痛点", "04 · Pain points"],
           ["信息在持续流失", "Information keeps getting lost"],
-          ["问题不在", "THE GAP IS NOT"],
-          ["舞者。", "THE DANCER."],
+          ["阶段中的", "PAIN POINTS "],
+          ["痛点", "ACROSS STAGES"],
           ["不确定", "Uncertain"],
           ["难同步", "Disconnected"],
           ["缺乏保障", "Exposed"],
@@ -3245,7 +3634,7 @@
           ["合成一个产品。", "one unified product."],
           ["团队并行探索学、练、演中的不同机会，最后将所有能力整合为一套连贯体验。", "The team explored opportunities across learning, practice, and performance in parallel, then consolidated every capability into one coherent experience."],
           ["震感产品与硬件", "Haptic products and hardware"],
-          ["iOS · iWatch @Yating · Android · 小米手环 @Yiwei · 独立硬件 @Jean", "iOS · iWatch @Yating · Android · Mi Band @Yiwei · Independent hardware @Jean"],
+          ["iOS · iWatch @Yating · Android · 小米手环 @Yiwei · M5硬件方案 @Jean", "iOS · iWatch @Yating · Android · Mi Band @Yiwei · M5 hardware solution @Jean"],
           ["Consolidate 合成一个产品", "Consolidate into one product"],
           ["来看看我们", "Now, let’s see"],
           ["整体的体验吧！", "the complete experience!"],
@@ -3263,13 +3652,26 @@
           ["个人站位 · 路线 · 时机", "Personal position · Route · Timing"],
           ["复盘偏差", "Review differences"],
           ["偏移图 · 教练式反馈", "Offset map · Coaching feedback"],
+          ["舞姿比对，", "Compare posture,"],
+          ["逐帧分析。", "analyze frame by frame."],
+          ["对比标准视频与练习视频，基于 MediaPipe Pose 提取人体关键点，对比标准动作与练习动作，快速定位动作差异，并提供 AI 建议，让每一次练习都有据可循。", "Compare reference and practice videos with MediaPipe Pose keypoint detection, locate movement differences frame by frame, and receive AI guidance grounded in every rehearsal."],
+          ["综合得分", "Composite score"],
+          ["从节奏、体态、动作完成度、稳定性等维度进行分析评分", "Score rhythm, posture, movement completion, and stability."],
+          ["人体关键点识别 & 姿态追踪", "Body keypoint detection & pose tracking"],
+          ["提取视频中的人体关键点与动作骨骼，逐帧对比标准动作与练习动作", "Extract body keypoints and movement skeletons to compare reference and practice motion frame by frame."],
+          ["AI 教练", "AI coach"],
+          ["从整体表现到细节动作，发现问题并给出针对性指导，精准定位关键帧", "Identify issues from overall performance to fine movement details, then give targeted guidance at the exact keyframe."],
           ["动作", "Motion"],
           ["校准", "calibration"],
           ["演出", "Performance"],
           ["视觉", "visuals"],
           ["震感应用", "haptic apps"],
-          ["独立硬件", "Independent hardware"],
+          ["M5硬件", "M5 hardware"],
           ["方案", "solution"],
+          ["M5硬件方案", "M5 hardware solution"],
+          ["让舞者", "Let dancers"],
+          ["看见声音。", "see sound."],
+          ["通过低成本百元设备（M5）把歌曲中的节拍、重拍、Drop 和段落变化，转换成舞者可以感受到或看到的震动、屏幕颜色、数字倒数和 LED 闪烁，并支持十几只设备同步运行。", "Using an affordable M5 device costing around one hundred yuan, beats, accents, drops, and section changes are translated into vibration, screen color, numeric countdowns, and LED flashes that dancers can feel or see, with synchronization across more than a dozen devices."],
           ["看见节奏，", "See the rhythm,"],
           ["拆解动作。", "break down movement."],
           ["把歌曲结构、八拍、动作段落和视频控制放在同一个视野中，减少反复猜测。", "Bring song structure, eight-counts, movement sections, and video controls into one view to reduce repeated guesswork."],
@@ -3278,6 +3680,16 @@
           ["八拍循环", "Eight-count loop"],
           ["镜像慢放", "Mirror and slow motion"],
           ["扒舞定制播放器", "Dance learning player"],
+          ["看见节拍，", "See the beat,"],
+          ["循环练习，", "loop the movement,"],
+          ["分享给团队。", "share with the team."],
+          ["把听觉节拍转化为可见、可循环、可分享的练舞信息。", "Turn auditory rhythm into visible, loopable, and shareable dance-learning information."],
+          ["可见", "Visible"],
+          ["AI 节拍分析 · 八拍数字 · 视觉提示", "AI beat analysis · Eight-count display · Visual cues"],
+          ["可循环", "Loopable"],
+          ["镜像慢放 · 八拍循环 · 段落循环", "Mirror & slow motion · Eight-count loop · Section loop"],
+          ["可分享", "Shareable"],
+          ["动作标记 · 导出 MP4 · 队友同步", "Movement markers · MP4 export · Team sync"],
           ["校准自己，", "Calibrate yourself,"],
           ["同步团队。", "align the team."],
           ["动作骨骼校准帮助舞者理解偏差；队形设计与分发为团队建立共同的空间语言。", "Motion calibration reveals movement differences, while formation design and sharing create a common spatial language."],
@@ -3306,10 +3718,10 @@
           ["含有视觉信号的模板", "Templates with embedded visual cues"],
           ["触摸节奏，", "Feel the rhythm,"],
           ["稳定登台。", "perform with confidence."],
-          ["通过独立硬件、iWatch 或小米手环提供稳定且可定制的震感提示，让舞者在舞台上持续感知节拍。", "Independent hardware, iWatch, or Mi Band deliver reliable, customizable haptic cues so dancers can keep sensing the beat on stage."],
+          ["通过 M5硬件、iWatch 或小米手环提供稳定且可定制的震感提示，让舞者在舞台上持续感知节拍。", "M5 hardware, iWatch, or Mi Band deliver reliable, customizable haptic cues so dancers can keep sensing the beat on stage."],
           ["iWatch 震感", "iWatch haptics"],
           ["小米手环", "Mi Band"],
-          ["独立硬件", "Independent hardware"],
+          ["M5硬件方案", "M5 hardware solution"],
           ["实时联动", "Real-time synchronization"],
           ["iOS · iWatch 震感应用", "iOS · iWatch haptic app"],
           ["Android · 小米手环", "Android · Mi Band"],
@@ -3317,6 +3729,10 @@
           ["因为它来自", "because it came from"],
           ["真实需要。", "real needs."],
           ["初步反馈显示，这些设计准确回应了舞者长期以来的实际需求——真正做到了他们心坎里。", "Early feedback showed that the designs spoke directly to needs dancers had carried for years — they felt genuinely understood."],
+          ["被看见", "Felt seen"],
+          ["被理解", "Felt understood"],
+          ["想继续使用", "Want to keep using it"],
+          ["舞团负责人 · 产品体验反馈", "Dance group lead · Product experience feedback"],
           ["被", "Felt"],
           ["看见", "seen"],
           ["理解", "understood"],
@@ -3423,6 +3839,7 @@
         }
 
         prevButton.addEventListener("click", () => goTo(index - 1));
+        homeButton.addEventListener("click", () => goTo(0));
         nextButton.addEventListener("click", () => goTo(index + 1));
         languageToggle.addEventListener("click", () => setLanguage(language === "zh" ? "en" : "zh"));
         document.querySelectorAll("[data-lightbox-src]").forEach((button) => {
