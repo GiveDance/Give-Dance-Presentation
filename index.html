@@ -2594,23 +2594,21 @@
         line-height: 1.5;
       }
 
-      .final-beats {
+      .team-portraits {
         display: flex;
-        gap: clamp(0.4rem, 0.9vw, 0.9rem);
-        margin-top: 3rem;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(0.4rem, 0.75vw, 0.75rem);
+        margin-top: clamp(1.5rem, 3vh, 2.5rem);
       }
 
-      .final-beats span {
-        width: clamp(0.5rem, 1vw, 0.9rem);
+      .team-portraits img {
+        width: clamp(3rem, 4.5vw, 4.8rem);
         aspect-ratio: 1;
         border-radius: 50%;
-        background: currentColor;
-      }
-
-      .final-beats span:nth-child(3),
-      .final-beats span:nth-child(7) {
-        background: var(--coral);
-        transform: scale(1.45);
+        border: 2px solid var(--paper);
+        object-fit: cover;
+        box-shadow: 0 0 0 1px rgba(11, 11, 13, 0.24);
       }
 
       /* Navigation */
@@ -3668,14 +3666,21 @@
         <div class="slide-body finale-layout">
           <h2 class="display title-xl reveal" style="--i: 0">SEE. FEEL.<br /><span class="highlight">MOVE TOGETHER.</span></h2>
           <p class="finale-sub reveal" style="--i: 1">不只是帮助 Dancers 跟上音乐，<br />而是让他们拥有并创造新的舞蹈语言。</p>
-          <div class="final-beats reveal" style="--i: 2" aria-hidden="true">
-            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          <div class="team-portraits reveal" style="--i: 2" aria-label="Give Dance 团队成员">
+            <img src="media/team-01.jpg" alt="团队成员头像 1" />
+            <img src="media/team-02.jpg" alt="团队成员头像 2" />
+            <img src="media/team-03.jpg" alt="团队成员头像 3" />
+            <img src="media/team-04.jpg" alt="团队成员头像 4" />
+            <img src="media/team-05.jpg" alt="团队成员头像 5" />
+            <img src="media/team-06.jpg" alt="团队成员头像 6" />
+            <img src="media/team-07.jpg" alt="团队成员头像 7" />
+            <img src="media/team-08.jpg" alt="团队成员头像 8" />
+            <img src="media/team-09.jpg" alt="团队成员头像 9" />
+            <img src="media/team-10.jpg" alt="团队成员头像 10" />
+            <img src="media/team-11.jpg" alt="团队成员头像 11" />
+            <img src="media/team-12.jpg" alt="团队成员头像 12" />
           </div>
         </div>
-        <footer class="slide-footer">
-          <span class="slide-number">10 / 10</span>
-          <span class="meta">Deaf K-pop Dancer · Product Design</span>
-        </footer>
       </section>
 
       <nav class="nav" aria-label="幻灯片导航">
@@ -3710,6 +3715,7 @@
         const lightboxClose = document.querySelector("#lightbox-close");
         const openingVideo = document.querySelector("#opening-video");
         const soundToggle = document.querySelector("[data-sound-toggle]");
+        let openingVideoMuted = openingVideo?.muted ?? false;
         const typingTimers = new Map();
         const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         let index = 0;
@@ -3982,6 +3988,8 @@
           const total = String(slides.length).padStart(2, "0");
           const number = slide.querySelector(".slide-number");
           if (number) number.textContent = `${current} / ${total}`;
+          const footerMeta = slide.querySelector(".slide-footer .meta");
+          if (footerMeta) footerMeta.textContent = "STUDIO8 GIVE COMMITTEE";
           slide.setAttribute("aria-label", `第 ${slideIndex + 1} 页，共 ${slides.length} 页`);
         });
 
@@ -4093,7 +4101,17 @@
           if (!openingVideo) return;
           openingVideo.muted = !openingVideo.muted;
         });
-        openingVideo?.addEventListener("volumechange", updateSoundToggle);
+        openingVideo?.addEventListener("volumechange", () => {
+          const muteChanged = openingVideo.muted !== openingVideoMuted;
+          openingVideoMuted = openingVideo.muted;
+          updateSoundToggle();
+          if (!muteChanged) return;
+
+          openingVideo.currentTime = 0;
+          openingVideo.play().catch((error) => {
+            console.warn("Unable to replay the opening video after changing its sound state.", error);
+          });
+        });
         updateSoundToggle();
 
         videoInput.addEventListener("change", () => {
