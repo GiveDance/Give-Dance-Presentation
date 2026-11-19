@@ -284,13 +284,50 @@
 
       /* 01 — Cover */
       .cover-slide {
+        isolation: isolate;
         overflow: hidden;
-        background: #000;
+        grid-template-rows: 1fr;
+        background: #08080a;
+      }
+
+      .cover-slide::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background:
+          linear-gradient(90deg, rgba(8, 8, 10, 0.64) 0%, rgba(8, 8, 10, 0.18) 54%, transparent 82%),
+          linear-gradient(0deg, rgba(8, 8, 10, 0.52) 0%, transparent 42%);
+        opacity: 0;
+      }
+
+      .cover-slide[data-cover-mode="galaxy"]::before,
+      .cover-slide[data-cover-mode="dot-grid"]::before,
+      .cover-slide[data-cover-mode="soft-aurora"]::before {
+        opacity: 1;
+      }
+
+      .cover-background {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+
+      .cover-slide .slide-header,
+      .cover-slide .slide-footer,
+      .cover-layout {
+        position: relative;
+        z-index: 2;
       }
 
       .cover-layout {
         grid-template-columns: 1fr;
-        align-items: end;
+        place-items: center;
+        text-align: center;
       }
 
       .cover-kicker {
@@ -314,10 +351,78 @@
       }
 
       .cover-title-main {
-        display: block;
+        position: relative;
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.18em;
         font-size: clamp(4.4rem, 9vw, 9.5rem);
         line-height: 0.84;
         white-space: nowrap;
+      }
+
+      .true-focus-word {
+        display: inline-block;
+        transition:
+          filter 620ms var(--ease),
+          opacity 620ms var(--ease),
+          transform 620ms var(--ease);
+      }
+
+      .true-focus-word:not(.is-focused) {
+        filter: blur(4px);
+        opacity: 0.4;
+        transform: scale(0.985);
+      }
+
+      .true-focus-frame {
+        --focus-color: var(--paper);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1px;
+        height: 1px;
+        z-index: 2;
+        pointer-events: none;
+        transform: translate3d(0, 0, 0);
+        transition:
+          transform 720ms var(--ease),
+          width 720ms var(--ease),
+          height 720ms var(--ease),
+          color 420ms ease;
+        color: var(--focus-color);
+      }
+
+      .true-focus-corner {
+        position: absolute;
+        width: clamp(0.75rem, 1.2vw, 1.2rem);
+        height: clamp(0.75rem, 1.2vw, 1.2rem);
+        border-color: currentColor;
+        border-style: solid;
+        filter: drop-shadow(0 0 0.4rem color-mix(in srgb, currentColor 36%, transparent));
+      }
+
+      .true-focus-corner:nth-child(1) {
+        top: 0;
+        left: 0;
+        border-width: 2px 0 0 2px;
+      }
+
+      .true-focus-corner:nth-child(2) {
+        top: 0;
+        right: 0;
+        border-width: 2px 2px 0 0;
+      }
+
+      .true-focus-corner:nth-child(3) {
+        right: 0;
+        bottom: 0;
+        border-width: 0 2px 2px 0;
+      }
+
+      .true-focus-corner:nth-child(4) {
+        bottom: 0;
+        left: 0;
+        border-width: 0 0 2px 2px;
       }
 
       .cover-title-subtitle {
@@ -3278,6 +3383,16 @@
       }
 
       @media (prefers-reduced-motion: reduce) {
+        .true-focus-word:not(.is-focused) {
+          filter: none;
+          opacity: 1;
+          transform: none;
+        }
+
+        .true-focus-frame {
+          display: none;
+        }
+
         *,
         *::before,
         *::after {
@@ -3293,25 +3408,27 @@
       <div class="progress" aria-hidden="true"><div class="progress-bar"></div></div>
 
       <section class="slide cover-slide active" data-title="Dance Manager for Hearing Impaired K-pop Dancer" aria-label="第 1 页，共 10 页">
-        <header class="slide-header">
-          <div class="eyebrow">Hearing Impaired K-pop Dancer</div>
-          <div class="meta">Product Design · Draft 01</div>
-        </header>
+        <canvas class="cover-background" id="cover-background" aria-hidden="true"></canvas>
         <div class="slide-body cover-layout">
           <div>
             <p class="cover-kicker reveal" style="--i: 0">
               <strong>Give</strong> <span class="cover-operator">x</span> <strong>AI</strong>
             </p>
             <h1 class="display cover-title reveal" style="--i: 1">
-              <span class="cover-title-main">DANCE <span class="highlight">MANAGER</span></span>
+              <span class="cover-title-main true-focus-title">
+                <span class="true-focus-word is-focused">DANCE</span>
+                <span class="true-focus-word highlight">MANAGER</span>
+                <span class="true-focus-frame" aria-hidden="true">
+                  <span class="true-focus-corner"></span>
+                  <span class="true-focus-corner"></span>
+                  <span class="true-focus-corner"></span>
+                  <span class="true-focus-corner"></span>
+                </span>
+              </span>
               <span class="cover-title-subtitle">FOR HEARING IMPAIRED K-POP DANCER</span>
             </h1>
           </div>
         </div>
-        <footer class="slide-footer">
-          <span class="slide-number">01 / 10</span>
-          <span class="meta">See · Feel · Move</span>
-        </footer>
       </section>
 
       <section class="slide" data-title="Dance With Sound" aria-label="First, watch a K-pop video">
@@ -3889,6 +4006,351 @@
         let touchStartX = 0;
         const videoUrls = new Map();
         let language = "zh";
+
+        function initCoverBackground() {
+          const cover = document.querySelector(".cover-slide");
+          const canvas = document.querySelector("#cover-background");
+          const requestedMode = new URLSearchParams(window.location.search).get("cover");
+          const supportedModes = new Set(["black", "galaxy", "dot-grid", "soft-aurora"]);
+          const mode = supportedModes.has(requestedMode) ? requestedMode : "galaxy";
+          if (!cover || !canvas) return;
+
+          cover.dataset.coverMode = mode;
+          if (mode === "black") {
+            canvas.hidden = true;
+            return;
+          }
+
+          const context = canvas.getContext("2d", { alpha: true });
+          if (!context) return;
+
+          const pointer = {
+            x: 0,
+            y: 0,
+            previousX: 0,
+            previousY: 0,
+            velocityX: 0,
+            velocityY: 0,
+            active: false
+          };
+          const shocks = [];
+          const stars = [];
+          let width = 1;
+          let height = 1;
+          let pixelRatio = 1;
+          let lastFrame = performance.now();
+
+          function resize() {
+            const bounds = cover.getBoundingClientRect();
+            width = Math.max(1, bounds.width);
+            height = Math.max(1, bounds.height);
+            pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+            canvas.width = Math.round(width * pixelRatio);
+            canvas.height = Math.round(height * pixelRatio);
+            canvas.style.width = `${width}px`;
+            canvas.style.height = `${height}px`;
+            context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+
+            if (mode === "galaxy") {
+              const targetCount = Math.min(620, Math.max(240, Math.round((width * height) / 2200)));
+              stars.length = 0;
+              for (let starIndex = 0; starIndex < targetCount; starIndex += 1) {
+                stars.push(createStar(true));
+              }
+            }
+          }
+
+          function createStar(randomDepth = false) {
+            const spread = Math.max(width, height) * 1.35;
+            return {
+              x: (Math.random() - 0.5) * spread,
+              y: (Math.random() - 0.5) * spread,
+              z: randomDepth ? Math.random() * width + 1 : width,
+              size: 0.45 + Math.random() * 1.25,
+              warm: Math.random() > 0.83
+            };
+          }
+
+          function resetStar(star) {
+            Object.assign(star, createStar(false));
+          }
+
+          function drawGalaxy(delta, elapsed) {
+            context.fillStyle = "#08080a";
+            context.fillRect(0, 0, width, height);
+
+            const focalLength = Math.min(width, height) * 0.82;
+            const centerX = width * 0.61 + (pointer.active ? (pointer.x - width * 0.5) * 0.055 : Math.sin(elapsed * 0.00017) * width * 0.018);
+            const centerY = height * 0.46 + (pointer.active ? (pointer.y - height * 0.5) * 0.055 : Math.cos(elapsed * 0.00013) * height * 0.018);
+            const speed = reduceMotion ? 0 : Math.min(width * 0.034, 28) * delta;
+
+            context.globalCompositeOperation = "lighter";
+            for (const star of stars) {
+              const previousZ = star.z;
+              star.z -= speed;
+              if (star.z < 1) {
+                resetStar(star);
+                continue;
+              }
+
+              const scale = focalLength / star.z;
+              const previousScale = focalLength / previousZ;
+              let screenX = centerX + star.x * scale;
+              let screenY = centerY + star.y * scale;
+              const previousX = centerX + star.x * previousScale;
+              const previousY = centerY + star.y * previousScale;
+
+              if (pointer.active) {
+                const dx = screenX - pointer.x;
+                const dy = screenY - pointer.y;
+                const distance = Math.hypot(dx, dy);
+                if (distance < 118 && distance > 0) {
+                  const repulsion = Math.pow(1 - distance / 118, 2) * 34;
+                  screenX += (dx / distance) * repulsion;
+                  screenY += (dy / distance) * repulsion;
+                }
+              }
+
+              if (screenX < -80 || screenX > width + 80 || screenY < -80 || screenY > height + 80) {
+                resetStar(star);
+                continue;
+              }
+
+              const depth = 1 - star.z / width;
+              const alpha = Math.max(0.12, Math.min(0.9, depth * 0.86));
+              const radius = Math.max(0.45, star.size * scale * 0.78);
+              const color = star.warm ? `rgba(255,91,79,${alpha})` : `rgba(245,240,232,${alpha})`;
+
+              context.beginPath();
+              context.moveTo(previousX, previousY);
+              context.lineTo(screenX, screenY);
+              context.strokeStyle = color;
+              context.lineWidth = Math.max(0.45, radius * 0.5);
+              context.stroke();
+
+              context.beginPath();
+              context.arc(screenX, screenY, radius, 0, Math.PI * 2);
+              context.fillStyle = color;
+              context.fill();
+            }
+            context.globalCompositeOperation = "source-over";
+
+            const haze = context.createRadialGradient(centerX, centerY, 0, centerX, centerY, Math.max(width, height) * 0.58);
+            haze.addColorStop(0, "rgba(255,91,79,0.055)");
+            haze.addColorStop(0.42, "rgba(255,91,79,0.018)");
+            haze.addColorStop(1, "rgba(8,8,10,0)");
+            context.fillStyle = haze;
+            context.fillRect(0, 0, width, height);
+          }
+
+          function drawDotGrid(elapsed) {
+            context.fillStyle = "#08080a";
+            context.fillRect(0, 0, width, height);
+
+            const spacing = Math.max(28, Math.min(38, width / 40));
+            const influenceRadius = spacing * 4.8;
+            const idleWaveX = width * (0.62 + Math.sin(elapsed * 0.00019) * 0.08);
+            const idleWaveY = height * (0.45 + Math.cos(elapsed * 0.00016) * 0.12);
+
+            for (let baseY = -spacing; baseY <= height + spacing; baseY += spacing) {
+              for (let baseX = -spacing; baseX <= width + spacing; baseX += spacing) {
+                let x = baseX;
+                let y = baseY;
+                let energy = 0;
+
+                const sourceX = pointer.active ? pointer.x : idleWaveX;
+                const sourceY = pointer.active ? pointer.y : idleWaveY;
+                const dx = baseX - sourceX;
+                const dy = baseY - sourceY;
+                const distance = Math.hypot(dx, dy);
+
+                if (distance < influenceRadius && distance > 0) {
+                  const force = Math.pow(1 - distance / influenceRadius, 2);
+                  const directionX = dx / distance;
+                  const directionY = dy / distance;
+                  const velocityBoost = Math.min(20, Math.hypot(pointer.velocityX, pointer.velocityY) * 0.38);
+                  const displacement = force * (pointer.active ? 17 + velocityBoost : 8);
+                  x += directionX * displacement + pointer.velocityX * force * 0.1;
+                  y += directionY * displacement + pointer.velocityY * force * 0.1;
+                  energy = Math.max(energy, force);
+                }
+
+                for (const shock of shocks) {
+                  const age = (elapsed - shock.startedAt) / 1000;
+                  const waveRadius = age * 360;
+                  const shockDistance = Math.hypot(baseX - shock.x, baseY - shock.y);
+                  const bandDistance = Math.abs(shockDistance - waveRadius);
+                  if (age < 1.25 && bandDistance < spacing * 1.4 && shockDistance > 0) {
+                    const force = (1 - age / 1.25) * (1 - bandDistance / (spacing * 1.4));
+                    x += ((baseX - shock.x) / shockDistance) * force * 24;
+                    y += ((baseY - shock.y) / shockDistance) * force * 24;
+                    energy = Math.max(energy, force);
+                  }
+                }
+
+                const pulse = 0.5 + 0.5 * Math.sin(baseX * 0.014 + baseY * 0.012 - elapsed * 0.00115);
+                const alpha = 0.22 + pulse * 0.14 + energy * 0.58;
+                const radius = 1.15 + energy * 1.55;
+                context.beginPath();
+                context.arc(x, y, radius, 0, Math.PI * 2);
+                context.fillStyle = energy > 0.18
+                  ? `rgba(255,91,79,${Math.min(0.92, alpha)})`
+                  : `rgba(245,240,232,${alpha})`;
+                context.fill();
+              }
+            }
+
+            while (shocks.length && elapsed - shocks[0].startedAt > 1250) shocks.shift();
+            pointer.velocityX *= 0.88;
+            pointer.velocityY *= 0.88;
+          }
+
+          function drawSoftAurora(elapsed) {
+            context.fillStyle = "#08080a";
+            context.fillRect(0, 0, width, height);
+
+            const time = elapsed * 0.00022;
+            const pointerX = pointer.active ? pointer.x / width - 0.5 : Math.sin(time * 0.72) * 0.12;
+            const pointerY = pointer.active ? pointer.y / height - 0.5 : Math.cos(time * 0.58) * 0.08;
+            const ribbons = [
+              { y: 0.12, amplitude: 0.12, thickness: 150, phase: 0.2, alpha: 0.34 },
+              { y: 0.27, amplitude: 0.16, thickness: 118, phase: 2.3, alpha: 0.28 },
+              { y: 0.43, amplitude: 0.13, thickness: 92, phase: 4.6, alpha: 0.22 }
+            ];
+
+            context.save();
+            context.globalCompositeOperation = "lighter";
+            context.filter = `blur(${Math.max(30, Math.min(58, width * 0.035))}px)`;
+
+            for (let ribbonIndex = 0; ribbonIndex < ribbons.length; ribbonIndex += 1) {
+              const ribbon = ribbons[ribbonIndex];
+              const gradient = context.createLinearGradient(0, 0, width, 0);
+              gradient.addColorStop(0, "rgba(255,91,79,0)");
+              gradient.addColorStop(0.18, `rgba(255,91,79,${ribbon.alpha * 0.72})`);
+              gradient.addColorStop(0.44, `rgba(242,165,148,${ribbon.alpha})`);
+              gradient.addColorStop(0.69, `rgba(202,222,210,${ribbon.alpha * 0.78})`);
+              gradient.addColorStop(0.9, `rgba(255,91,79,${ribbon.alpha * 0.46})`);
+              gradient.addColorStop(1, "rgba(255,91,79,0)");
+
+              context.beginPath();
+              for (let x = -80; x <= width + 80; x += 18) {
+                const normalizedX = x / width;
+                const primaryWave = Math.sin(normalizedX * Math.PI * 2.05 + time * (1.18 + ribbonIndex * 0.12) + ribbon.phase);
+                const detailWave = Math.sin(normalizedX * Math.PI * 4.3 - time * 0.72 + ribbon.phase * 0.62) * 0.38;
+                const cursorDrift = pointer.active
+                  ? Math.exp(-Math.pow((normalizedX - (pointer.x / width)), 2) / 0.055) * pointerY * height * 0.18
+                  : 0;
+                const y = height * ribbon.y
+                  + (primaryWave + detailWave) * height * ribbon.amplitude
+                  + pointerX * height * (0.035 + ribbonIndex * 0.008)
+                  + cursorDrift;
+                if (x === -80) context.moveTo(x, y);
+                else context.lineTo(x, y);
+              }
+              context.strokeStyle = gradient;
+              context.lineWidth = Math.min(height * 0.24, ribbon.thickness);
+              context.lineCap = "round";
+              context.stroke();
+            }
+            context.restore();
+
+            const glow = context.createRadialGradient(
+              width * (0.58 + pointerX * 0.1),
+              height * (0.18 + pointerY * 0.05),
+              0,
+              width * 0.58,
+              height * 0.18,
+              Math.max(width, height) * 0.65
+            );
+            glow.addColorStop(0, "rgba(255,91,79,0.085)");
+            glow.addColorStop(0.36, "rgba(202,222,210,0.025)");
+            glow.addColorStop(1, "rgba(8,8,10,0)");
+            context.fillStyle = glow;
+            context.fillRect(0, 0, width, height);
+          }
+
+          function updatePointer(event) {
+            const bounds = cover.getBoundingClientRect();
+            pointer.previousX = pointer.x;
+            pointer.previousY = pointer.y;
+            pointer.x = event.clientX - bounds.left;
+            pointer.y = event.clientY - bounds.top;
+            pointer.velocityX = pointer.x - pointer.previousX;
+            pointer.velocityY = pointer.y - pointer.previousY;
+            pointer.active = true;
+          }
+
+          cover.addEventListener("pointermove", updatePointer);
+          cover.addEventListener("pointerenter", updatePointer);
+          cover.addEventListener("pointerleave", () => {
+            pointer.active = false;
+          });
+          cover.addEventListener("pointerdown", (event) => {
+            if (mode !== "dot-grid" || reduceMotion) return;
+            updatePointer(event);
+            shocks.push({ x: pointer.x, y: pointer.y, startedAt: performance.now() });
+          });
+
+          resize();
+          window.addEventListener("resize", resize);
+
+          function animate(now) {
+            const delta = Math.min(0.05, (now - lastFrame) / 1000);
+            lastFrame = now;
+            if (!document.hidden && cover.classList.contains("active")) {
+              if (mode === "galaxy") drawGalaxy(delta, now);
+              if (mode === "dot-grid") drawDotGrid(now);
+              if (mode === "soft-aurora") drawSoftAurora(now);
+            }
+            requestAnimationFrame(animate);
+          }
+
+          if (reduceMotion) {
+            if (mode === "galaxy") drawGalaxy(0, 0);
+            if (mode === "dot-grid") drawDotGrid(0);
+            if (mode === "soft-aurora") drawSoftAurora(0);
+          } else {
+            requestAnimationFrame(animate);
+          }
+        }
+
+        initCoverBackground();
+
+        function initTrueFocusTitle() {
+          const cover = document.querySelector(".cover-slide");
+          const title = document.querySelector(".true-focus-title");
+          const frame = title?.querySelector(".true-focus-frame");
+          const words = title ? Array.from(title.querySelectorAll(".true-focus-word")) : [];
+          if (!cover || !title || !frame || words.length < 2 || reduceMotion) return;
+
+          let activeWordIndex = 0;
+
+          function moveFocus() {
+            const word = words[activeWordIndex];
+            const titleBounds = title.getBoundingClientRect();
+            const wordBounds = word.getBoundingClientRect();
+            const horizontalPadding = Math.max(8, Math.min(14, titleBounds.width * 0.012));
+            const verticalPadding = Math.max(7, Math.min(12, titleBounds.height * 0.09));
+
+            words.forEach((candidate, wordIndex) => {
+              candidate.classList.toggle("is-focused", wordIndex === activeWordIndex);
+            });
+            frame.style.width = `${wordBounds.width + horizontalPadding * 2}px`;
+            frame.style.height = `${wordBounds.height + verticalPadding * 2}px`;
+            frame.style.transform = `translate3d(${wordBounds.left - titleBounds.left - horizontalPadding}px, ${wordBounds.top - titleBounds.top - verticalPadding}px, 0)`;
+            frame.style.setProperty("--focus-color", activeWordIndex === 0 ? "var(--paper)" : "var(--coral)");
+          }
+
+          window.addEventListener("resize", moveFocus);
+          window.setTimeout(moveFocus, 760);
+          window.setInterval(() => {
+            if (!cover.classList.contains("active") || document.hidden) return;
+            activeWordIndex = (activeWordIndex + 1) % words.length;
+            moveFocus();
+          }, 1900);
+        }
+
+        initTrueFocusTitle();
 
         const zhToEn = new Map([
           ["当音乐无法被完整听见，舞者如何感知节奏、学习动作并完成表演？", "When music cannot be fully heard, how do dancers sense rhythm, learn movement, and perform?"],
